@@ -1,3 +1,10 @@
+---
+title: "Tự động hóa không thể chỉ dùng một công cụ duy nhất (phần 2)"
+date: 2026-05-29
+categories: automation
+lang: vi
+image: /smallgarden/assets/images/Screenshot_1.png
+---
 Trước khi pha màu, cần hiểu màu. Và công cụ đơn giản nhất để hiểu màu chính là vòng tròn màu — một sơ đồ tổ chức mối quan hệ giữa các màu sắc theo cấu trúc vòng tròn.
 
 Vòng tròn màu là gì?
