@@ -1,15 +1,19 @@
 {% assign lang = page.lang | default: 'en' %}
+{% assign home_url = '/' | append: lang | append: '/' | relative_url %}
 
-<footer class="site-footer">
-  <div class="container footer-inner">
-    <div class="footer-brand-group">
-      <span class="footer-signature">{{ site.title }}</span>
-      <p class="footer-tagline">
+<footer class="bg-surface-container-low border-t border-outline-variant mt-16">
+  <div class="max-w-container-max-width mx-auto px-margin-mobile md:px-margin-desktop py-10 flex flex-col md:flex-row justify-between items-center gap-6">
+
+    <div class="text-center md:text-left">
+      <a href="{{ home_url }}" class="font-signature text-3xl text-secondary no-underline">{{ site.title }}</a>
+      <p class="font-label-sm text-label-sm text-on-surface-variant mt-1">
         {% if lang == 'vi' %}Nuôi dưỡng suy nghĩ từng chút một{% else %}Nurturing thoughts slowly{% endif %}
       </p>
     </div>
-    <span class="footer-copy">
+
+    <p class="font-label-sm text-label-sm text-on-surface-variant">
       {% if lang == 'vi' %}Được tạo bằng Jekyll · GitHub Pages{% else %}Built with Jekyll · GitHub Pages{% endif %}
-    </span>
+    </p>
+
   </div>
 </footer>
