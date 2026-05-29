@@ -23,7 +23,8 @@ layout: default
   <section class="topics-section">
     <div class="topics-grid">
       {% for topic in site.data.topics %}
-        {% assign topic_posts = site.posts | where_exp: "post", "post.lang == lang and post.categories contains topic.slug" %}
+        {% assign t_slug = topic.slug %}
+        {% assign topic_posts = site.posts | where: "lang", lang | where_exp: "post", "post.categories contains t_slug" %}
         <a href="{{ '/' | append: lang | append: '/' | append: topic.slug | append: '/' | relative_url }}" class="topic-card">
           <span class="topic-card-icon">{{ topic.icon }}</span>
           <div class="topic-card-name">{{ topic[lang].name }}</div>
