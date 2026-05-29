@@ -91,14 +91,51 @@ img { max-width: 100%; height: auto; display: block; }
   padding: 0 var(--margin-desktop);
 }
 
-/* ===== Central white panel ===== */
+/* ===== Margin + panel layout ===== */
+
+/* Flex row: [botanical | white panel | botanical]
+   Body bg (#B8D8F8) shows as the colored sidebars */
+.page-margins {
+  display: flex;
+  flex: 1;
+  background: #B8D8F8;
+}
+
+/* Central white content panel */
 .page-panel {
+  flex: 1;
+  min-width: 0;
   max-width: var(--max-w-wide);
-  margin: 0 auto;
   background: var(--bg-panel);
   box-shadow: var(--shadow-panel);
-  min-height: calc(100vh - var(--nav-h));
+}
+
+/* Botanical margin columns — sticky so they stay visible while scrolling */
+.margin-botanical {
   flex: 1;
+  position: sticky;
+  top: var(--nav-h);
+  height: calc(100vh - var(--nav-h));
+  align-self: flex-start;
+  overflow: hidden;
+  pointer-events: none;
+  display: flex;
+  align-items: flex-start;
+  padding-top: 3rem;
+}
+
+.margin-botanical--left  { justify-content: flex-end;   padding-right: 1rem; }
+.margin-botanical--right { justify-content: flex-start;  padding-left: 1rem;  }
+
+.botanical-svg {
+  width: min(96px, 80%);
+  height: auto;
+  display: block;
+}
+
+/* Hide botanicals when there is no visible margin */
+@media (max-width: 1140px) {
+  .margin-botanical { display: none; }
 }
 
 /* ===== Navigation ===== */
@@ -112,9 +149,7 @@ img { max-width: 100%; height: auto; display: block; }
   overflow: hidden;
 }
 
-/* Botanical leaf decorations */
---leaf-svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 160'%3E%3Cpath d='M40 0 C80 28 82 90 40 158 C-2 90 0 28 40 0Z' fill='%23446648'/%3E%3Cline x1='40' y1='4' x2='40' y2='154' stroke='%232d4e31' stroke-width='1.5'/%3E%3C/svg%3E");
-
+/* Nav botanical leaf decorations */
 .nav-botanical {
   position: absolute;
   inset: 0;
