@@ -11,12 +11,6 @@ kramdown:
   input: GFM
   syntax_highlighter: rouge
 
-# Plugins (GitHub Pages compatible)
-plugins:
-  - jekyll-feed
-  - jekyll-sitemap
-  - jekyll-seo-tag
-
 # Exclude from processing
 exclude:
   - Gemfile
