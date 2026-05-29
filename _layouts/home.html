@@ -3,33 +3,42 @@ layout: default
 ---
 {% assign lang = page.lang | default: 'en' %}
 
-<div class="container--narrow">
-  <section class="home-intro">
-    <h1>
-      {% if lang == 'vi' %}Vườn Nhỏ{% else %}Small Garden{% endif %}
-    </h1>
-    <p>
-      {% if lang == 'vi' %}
-        Nơi ghi lại những suy nghĩ, học hỏi và quan sát về công việc và cuộc sống.
-      {% else %}
-        Where I record thoughts, learnings, and observations about work and life.
-      {% endif %}
-    </p>
-    <div class="home-intro-divider"></div>
-  </section>
-</div>
+<!-- Hero Section -->
+<header class="mb-section-gap max-w-3xl relative">
+  <h1 class="font-headline-xl text-headline-xl text-primary mb-6">
+    {% if lang == 'vi' %}Gieo những hạt mầm suy nghĩ.{% else %}Cultivating thoughts at the speed of nature.{% endif %}
+  </h1>
+  <p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+    {% if lang == 'vi' %}
+      Chào mừng đến vườn nhỏ kỹ thuật số của tôi — nơi lưu giữ những suy nghĩ, học hỏi và quan sát về công việc và cuộc sống.
+    {% else %}
+      Welcome to my digital garden. A curated collection of thoughts across various disciplines. No algorithms, just slow growth.
+    {% endif %}
+  </p>
+</header>
 
-<div class="container">
-  <section class="topics-section">
-    <div class="topics-grid">
-      {% for topic in site.data.topics %}
-        {% assign t_slug = topic.slug %}
-        {% assign topic_posts = site.posts | where: "lang", lang | where_exp: "post", "post.categories contains t_slug" %}
-        <a href="{{ '/' | append: lang | append: '/' | append: topic.slug | append: '/' | relative_url }}" class="topic-card">
-          <span class="topic-card-icon">{{ topic.icon }}</span>
-          <div class="topic-card-name">{{ topic[lang].name }}</div>
-          <div class="topic-card-desc">{{ topic[lang].description }}</div>
-          <div class="topic-card-meta">
+<!-- Topics Grid -->
+<section>
+  <div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+    {% for topic in site.data.topics %}
+      {% assign t_slug = topic.slug %}
+      {% assign topic_posts = site.posts | where: "lang", lang | where_exp: "post", "post.categories contains t_slug" %}
+      {% assign topic_url = '/' | append: lang | append: '/' | append: topic.slug | append: '/' | relative_url %}
+      {% assign ci = forloop.index0 | modulo: 3 %}
+      <a href="{{ topic_url }}" class="md:col-span-4 group garden-card bg-surface-container-lowest rounded-lg p-6 shadow-sm transition-all duration-300 border border-outline-variant/30 flex flex-col no-underline">
+        <div class="text-3xl mb-4">{{ topic.icon }}</div>
+        <div class="mb-3">
+          {% if ci == 0 %}
+            <span class="px-3 py-1 rounded-full bg-primary-container text-on-primary-container font-label-sm text-label-sm">{{ topic[lang].name }}</span>
+          {% elsif ci == 1 %}
+            <span class="px-3 py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm">{{ topic[lang].name }}</span>
+          {% else %}
+            <span class="px-3 py-1 rounded-full bg-tertiary-container text-on-tertiary-container font-label-sm text-label-sm">{{ topic[lang].name }}</span>
+          {% endif %}
+        </div>
+        <p class="font-body-md text-body-md text-on-surface-variant flex-1 mb-4">{{ topic[lang].description }}</p>
+        <div class="pt-4 border-t border-outline-variant">
+          <span class="text-on-surface-variant/60 font-label-sm text-label-sm">
             {% if topic_posts.size == 0 %}
               {% if lang == 'vi' %}Chưa có bài viết{% else %}No posts yet{% endif %}
             {% elsif topic_posts.size == 1 %}
@@ -37,9 +46,9 @@ layout: default
             {% else %}
               {{ topic_posts.size }} {% if lang == 'vi' %}bài{% else %}posts{% endif %}
             {% endif %}
-          </div>
-        </a>
-      {% endfor %}
-    </div>
-  </section>
-</div>
+          </span>
+        </div>
+      </a>
+    {% endfor %}
+  </div>
+</section>
