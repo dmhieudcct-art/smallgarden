@@ -7,9 +7,17 @@
 {% endif %}
 
 <header class="site-header">
+  <!-- Botanical leaf decorations -->
+  <div class="nav-botanical" aria-hidden="true">
+    <span class="leaf leaf-tl"></span>
+    <span class="leaf leaf-bl"></span>
+    <span class="leaf leaf-tr"></span>
+    <span class="leaf leaf-br"></span>
+  </div>
+
   <nav class="nav" role="navigation" aria-label="Main navigation">
     <a href="{{ home_url | relative_url }}" class="nav-brand">
-      <span aria-hidden="true">🌿</span> {{ site.title }}
+      {{ site.title }}
     </a>
 
     <div class="nav-menu" id="navMenu">
