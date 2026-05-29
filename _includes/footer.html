@@ -2,17 +2,17 @@
 {% assign home_url = '/' | append: lang | append: '/' | relative_url %}
 
 <footer class="bg-surface-container-low border-t border-outline-variant mt-16">
-  <div class="max-w-container-max-width mx-auto px-margin-mobile md:px-margin-desktop py-10 flex flex-col md:flex-row justify-between items-center gap-6">
+  <div class="max-w-container-max-width mx-auto px-margin-mobile md:px-margin-desktop py-10 flex flex-col items-center gap-3 text-center">
 
-    <div class="text-center md:text-left">
-      <a href="{{ home_url }}" class="font-signature text-3xl text-secondary no-underline">{{ site.title }}</a>
-      <p class="font-label-sm text-label-sm text-on-surface-variant mt-1">
-        {% if lang == 'vi' %}Nuôi dưỡng suy nghĩ từng chút một{% else %}Nurturing thoughts slowly{% endif %}
-      </p>
-    </div>
+    <a href="{{ home_url }}" class="font-signature text-3xl text-secondary no-underline">{{ site.title }}</a>
 
     <p class="font-label-sm text-label-sm text-on-surface-variant">
-      {% if lang == 'vi' %}Được tạo bằng Jekyll · GitHub Pages{% else %}Built with Jekyll · GitHub Pages{% endif %}
+      © {{ site.time | date: "%Y" }} Small Garden.
+      {% if lang == 'vi' %}Nuôi dưỡng suy nghĩ từng chút một.{% else %}Nurturing thoughts slowly.{% endif %}
+    </p>
+
+    <p class="font-label-sm text-label-sm text-on-surface-variant">
+      Created by Hiếu
     </p>
 
   </div>
