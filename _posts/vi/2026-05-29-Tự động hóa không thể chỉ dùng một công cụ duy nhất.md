@@ -3,7 +3,7 @@ title: "Tự động hóa không thể chỉ dùng một công cụ duy nhất"
 date: 2026-05-29
 categories: automation
 lang: vi
-image: https://upload.wikimedia.org/wikipedia/commons/thumb/3f/Fronalpstock_big.jpg/1280px-Fronalpstock_big.jpg
+image: /smallgarden/assets/images/Screenshot_1.png
 ---
 Nhiều người bắt đầu hành trình tự động hóa với một công cụ yêu thích — rồi cố nhét tất cả mọi bài toán vào đó. Kết quả thường là: giải pháp quá phức tạp, khó bảo trì, và dễ vỡ.
 
