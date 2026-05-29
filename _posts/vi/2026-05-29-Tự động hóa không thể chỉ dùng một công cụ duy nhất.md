@@ -15,3 +15,4 @@ n8n — kết nối các dịch vụ
 Khi bài toán là "khi X xảy ra thì làm Y ở chỗ Z" — n8n là công cụ phù hợp. Kéo thả workflow, kết nối hàng trăm dịch vụ, tự host được. Không thay thế Python nhưng bổ sung hoàn hảo.
 
 Chiến lược đúng: dùng công cụ nhẹ nhất có thể giải quyết bài toán. Khi bài toán lớn hơn, kết hợp. Đừng bao giờ cố dùng một búa để vặn vít
+![mô tả ảnh](https://i.ytimg.com/vi/INDrZBy8ZRo/maxresdefault.jpg)
