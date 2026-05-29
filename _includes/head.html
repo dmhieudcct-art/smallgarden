@@ -1,13 +1,102 @@
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>{% if page.title %}{{ page.title }} — {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
 <meta name="description" content="{{ page.description | default: site.description | strip_html | truncate: 160 }}">
-<meta property="og:title" content="{{ page.title | default: site.title }}">
-<meta property="og:description" content="{{ page.description | default: site.description | strip_html | truncate: 160 }}">
-<meta property="og:type" content="{% if layout.name == 'post' %}article{% else %}website{% endif %}">
-<meta property="og:url" content="{{ page.url | absolute_url }}">
 <link rel="canonical" href="{{ page.url | absolute_url }}">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Literata:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Literata:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+          "background": "#FEFDF8",
+          "surface-dim": "#d9dadb",
+          "on-secondary-fixed-variant": "#613d3e",
+          "on-secondary-container": "#7a5354",
+          "on-background": "#191c1d",
+          "on-secondary": "#ffffff",
+          "primary-fixed-dim": "#aacaea",
+          "on-surface-variant": "#42474d",
+          "secondary": "#7b5455",
+          "surface-container-low": "#f3f4f5",
+          "secondary-fixed": "#F8C8D4",
+          "secondary-fixed-dim": "#ecbaba",
+          "secondary-container": "#F8C8D4",
+          "surface-container-lowest": "#ffffff",
+          "primary": "#42617d",
+          "on-primary-container": "#34536f",
+          "error-container": "#ffdad6",
+          "surface-container-high": "#e7e8e9",
+          "surface-bright": "#FEFDF8",
+          "outline-variant": "#c2c7ce",
+          "surface-container": "#edeeef",
+          "tertiary-fixed": "#C8F0E0",
+          "inverse-primary": "#aacaea",
+          "surface-tint": "#42617d",
+          "on-tertiary": "#191c1d",
+          "on-tertiary-container": "#191c1d",
+          "on-primary-fixed-variant": "#294964",
+          "on-primary": "#ffffff",
+          "on-tertiary-fixed": "#012109",
+          "tertiary": "#446648",
+          "tertiary-container": "#C8F0E0",
+          "on-secondary-fixed": "#2f1314",
+          "primary-fixed": "#B8D8F8",
+          "primary-container": "#B8D8F8",
+          "on-surface": "#191c1d",
+          "on-error-container": "#93000a",
+          "inverse-surface": "#2e3132",
+          "on-primary-fixed": "#001d32",
+          "outline": "#73777e",
+          "on-error": "#ffffff",
+          "tertiary-fixed-dim": "#aad0ab",
+          "error": "#ba1a1a",
+          "inverse-on-surface": "#f0f1f2",
+          "surface-container-highest": "#e1e3e4",
+          "surface": "#FEFDF8",
+          "surface-variant": "#e1e3e4",
+          "on-tertiary-fixed-variant": "#2d4e31"
+        },
+        "borderRadius": {
+          "DEFAULT": "0.25rem",
+          "lg": "0.5rem",
+          "xl": "0.75rem",
+          "full": "9999px"
+        },
+        "spacing": {
+          "section-gap": "80px",
+          "unit": "8px",
+          "margin-mobile": "16px",
+          "margin-desktop": "64px",
+          "gutter": "24px",
+          "container-max-width": "1100px"
+        },
+        "fontFamily": {
+          "headline-lg": ["Literata"],
+          "label-md": ["DM Sans"],
+          "headline-lg-mobile": ["Literata"],
+          "body-lg": ["DM Sans"],
+          "headline-xl": ["Literata"],
+          "body-md": ["DM Sans"],
+          "label-sm": ["DM Sans"],
+          "headline-md": ["Literata"],
+          "signature": ["Dancing Script"]
+        },
+        "fontSize": {
+          "headline-lg": ["32px", {"lineHeight": "1.3", "fontWeight": "600"}],
+          "label-md": ["14px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "500"}],
+          "headline-lg-mobile": ["28px", {"lineHeight": "1.3", "fontWeight": "600"}],
+          "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+          "headline-xl": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+          "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+          "label-sm": ["12px", {"lineHeight": "1.2", "fontWeight": "700"}],
+          "headline-md": ["24px", {"lineHeight": "1.4", "fontWeight": "500"}]
+        }
+      }
+    }
+  }
+</script>
 <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
