@@ -93,48 +93,47 @@ img { max-width: 100%; height: auto; display: block; }
 
 /* ===== Margin + panel layout ===== */
 
-/* Flex row: [botanical | white panel | botanical]
-   Body bg (#B8D8F8) shows as the colored sidebars */
+/* Blue body bg (#B8D8F8) is the margin; panel centers on top of it */
 .page-margins {
-  display: flex;
   flex: 1;
-  background: #B8D8F8;
 }
 
-/* Central white content panel */
+/* Central white content panel — z-index keeps it above body bg */
 .page-panel {
-  flex: 1;
-  min-width: 0;
   max-width: var(--max-w-wide);
+  width: 100%;
+  margin: 0 auto;
   background: var(--bg-panel);
   box-shadow: var(--shadow-panel);
+  position: relative;
+  z-index: 1;
+  min-height: calc(100vh - var(--nav-h));
 }
 
-/* Botanical margin columns — sticky so they stay visible while scrolling */
+/* Botanical corner decorations — fixed, out of flow, never compete with panel */
 .margin-botanical {
-  flex: 1;
-  position: sticky;
-  top: var(--nav-h);
-  height: calc(100vh - var(--nav-h));
-  align-self: flex-start;
-  overflow: hidden;
+  position: fixed;
+  bottom: 2.5rem;
+  width: calc((100vw - var(--max-w-wide)) / 2);
   pointer-events: none;
+  z-index: 2;
   display: flex;
-  align-items: flex-start;
-  padding-top: 3rem;
+  align-items: flex-end;
 }
 
-.margin-botanical--left  { justify-content: flex-end;   padding-right: 1rem; }
-.margin-botanical--right { justify-content: flex-start;  padding-left: 1rem;  }
+.margin-botanical--left  { left: 0;  justify-content: flex-end;  padding-right: 1.25rem; }
+.margin-botanical--right { right: 0; justify-content: flex-start; padding-left: 1.25rem; }
 
 .botanical-svg {
-  width: min(96px, 80%);
+  width: 80px;
+  max-width: 120px;
   height: auto;
   display: block;
+  opacity: 0.72;
 }
 
-/* Hide botanicals when there is no visible margin */
-@media (max-width: 1140px) {
+/* Hide when margin is too narrow to be useful */
+@media (max-width: 1180px) {
   .margin-botanical { display: none; }
 }
 
