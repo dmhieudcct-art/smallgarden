@@ -2,53 +2,81 @@
 layout: default
 ---
 {% assign lang = page.lang | default: 'en' %}
+{% assign lang_posts = site.posts | where: "lang", lang %}
+{% assign featured = lang_posts | first %}
+{% assign recent = lang_posts | slice: 1, 6 %}
 
-<!-- Hero Section -->
-<header class="mb-section-gap max-w-3xl relative">
-  <h1 class="font-headline-xl text-headline-xl text-primary mb-6">
-    {% if lang == 'vi' %}Gieo những hạt mầm suy nghĩ.{% else %}Cultivating thoughts at the speed of nature.{% endif %}
-  </h1>
-  <p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
-    {% if lang == 'vi' %}
-      Chào mừng đến vườn nhỏ kỹ thuật số của tôi — nơi lưu giữ những suy nghĩ, học hỏi và quan sát về công việc và cuộc sống.
-    {% else %}
-      Welcome to my digital garden. A curated collection of thoughts across various disciplines. No algorithms, just slow growth.
-    {% endif %}
-  </p>
-</header>
-
-<!-- Topics Grid -->
-<section>
-  <div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
-    {% for topic in site.data.topics %}
-      {% assign t_slug = topic.slug %}
-      {% assign topic_posts = site.posts | where: "lang", lang | where_exp: "post", "post.categories contains t_slug" %}
-      {% assign topic_url = '/' | append: lang | append: '/' | append: topic.slug | append: '/' | relative_url %}
-      {% assign ci = forloop.index0 | modulo: 3 %}
-      <a href="{{ topic_url }}" class="md:col-span-4 group garden-card bg-surface-container-lowest rounded-lg p-6 shadow-sm transition-all duration-300 border border-outline-variant/30 flex flex-col no-underline">
-        <div class="text-3xl mb-4">{{ topic.icon }}</div>
-        <div class="mb-3">
-          {% if ci == 0 %}
-            <span class="px-3 py-1 rounded-full bg-primary-container text-on-primary-container font-label-sm text-label-sm">{{ topic[lang].name }}</span>
-          {% elsif ci == 1 %}
-            <span class="px-3 py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm">{{ topic[lang].name }}</span>
+<!-- Featured Post -->
+{% if featured %}
+  {% assign feat_cat_slug = featured.categories | first %}
+  {% assign feat_topic = site.data.topics | where: "slug", feat_cat_slug | first %}
+  {% assign feat_cat_name = feat_topic[lang].name | default: feat_cat_slug %}
+  <section class="mb-section-gap">
+    <a href="{{ featured.url | relative_url }}" class="group garden-card bg-surface-container-lowest rounded-lg p-10 md:p-12 shadow-sm transition-all duration-300 border border-outline-variant/30 no-underline block">
+      <div class="flex flex-wrap items-center gap-3 mb-6">
+        <span class="px-3 py-1 rounded-full bg-primary-container text-on-primary-container font-label-sm text-label-sm">{{ feat_cat_name }}</span>
+        <span class="text-on-surface-variant/60 font-label-sm text-label-sm">
+          {% if lang == 'vi' %}
+            {{ featured.date | date: "%-d tháng %-m, %Y" }}
           {% else %}
-            <span class="px-3 py-1 rounded-full bg-tertiary-container text-on-tertiary-container font-label-sm text-label-sm">{{ topic[lang].name }}</span>
+            {{ featured.date | date: "%B %-d, %Y" }}
           {% endif %}
-        </div>
-        <p class="font-body-md text-body-md text-on-surface-variant flex-1 mb-4">{{ topic[lang].description }}</p>
-        <div class="pt-4 border-t border-outline-variant">
-          <span class="text-on-surface-variant/60 font-label-sm text-label-sm">
-            {% if topic_posts.size == 0 %}
-              {% if lang == 'vi' %}Chưa có bài viết{% else %}No posts yet{% endif %}
-            {% elsif topic_posts.size == 1 %}
-              1 {% if lang == 'vi' %}bài{% else %}post{% endif %}
+        </span>
+      </div>
+      <h2 class="font-headline-xl text-headline-xl text-on-surface group-hover:text-primary transition-colors mb-6 max-w-3xl">{{ featured.title }}</h2>
+      {% if featured.excerpt %}
+        <p class="font-body-lg text-body-lg text-on-surface-variant mb-8 max-w-2xl leading-relaxed">{{ featured.excerpt | strip_html | truncate: 280 }}</p>
+      {% endif %}
+      <span class="inline-flex items-center gap-2 px-6 py-3 bg-primary text-on-primary rounded-lg font-label-md text-label-md hover:shadow-lg transition-all active:scale-95">
+        {% if lang == 'vi' %}Đọc tiếp{% else %}Read more{% endif %}
+        <span class="material-symbols-outlined" style="font-size:16px;">arrow_forward</span>
+      </span>
+    </a>
+  </section>
+{% endif %}
+
+<!-- Recent Posts Grid -->
+{% if recent.size > 0 %}
+  <section>
+    <h2 class="font-headline-md text-headline-md text-on-surface mb-gutter">
+      {% if lang == 'vi' %}Bài viết gần đây{% else %}Recent Posts{% endif %}
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+      {% for post in recent %}
+        {% assign post_cat_slug = post.categories | first %}
+        {% assign post_topic = site.data.topics | where: "slug", post_cat_slug | first %}
+        {% assign post_cat_name = post_topic[lang].name | default: post_cat_slug %}
+        {% assign post_ci = 0 %}
+        {% for t in site.data.topics %}
+          {% if t.slug == post_cat_slug %}
+            {% assign post_ci = forloop.index0 | modulo: 3 %}
+          {% endif %}
+        {% endfor %}
+        <a href="{{ post.url | relative_url }}" class="md:col-span-4 group garden-card bg-surface-container-lowest rounded-lg p-6 shadow-sm transition-all duration-300 border border-outline-variant/30 no-underline flex flex-col">
+          <div class="mb-4">
+            {% if post_ci == 0 %}
+              <span class="px-3 py-1 rounded-full bg-primary-container text-on-primary-container font-label-sm text-label-sm">{{ post_cat_name }}</span>
+            {% elsif post_ci == 1 %}
+              <span class="px-3 py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm">{{ post_cat_name }}</span>
             {% else %}
-              {{ topic_posts.size }} {% if lang == 'vi' %}bài{% else %}posts{% endif %}
+              <span class="px-3 py-1 rounded-full bg-tertiary-container text-on-tertiary-container font-label-sm text-label-sm">{{ post_cat_name }}</span>
             {% endif %}
-          </span>
-        </div>
-      </a>
-    {% endfor %}
-  </div>
-</section>
+          </div>
+          <h3 class="font-headline-md text-headline-md text-on-surface group-hover:text-primary transition-colors mb-3 flex-1">{{ post.title }}</h3>
+          {% if post.excerpt %}
+            <p class="font-body-md text-body-md text-on-surface-variant line-clamp-3 mb-4">{{ post.excerpt | strip_html | truncate: 160 }}</p>
+          {% endif %}
+          <div class="pt-4 border-t border-outline-variant">
+            <span class="text-on-surface-variant/60 font-label-sm text-label-sm">
+              {% if lang == 'vi' %}
+                {{ post.date | date: "%-d tháng %-m, %Y" }}
+              {% else %}
+                {{ post.date | date: "%B %-d, %Y" }}
+              {% endif %}
+            </span>
+          </div>
+        </a>
+      {% endfor %}
+    </div>
+  </section>
+{% endif %}
