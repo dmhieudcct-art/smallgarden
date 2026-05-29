@@ -4,58 +4,81 @@ layout: default
 {% assign lang = page.lang | default: 'en' %}
 {% assign category = page.categories | first %}
 {% assign topic_data = site.data.topics | where: "slug", category | first %}
+{% assign cat_name = topic_data[lang].name | default: category %}
 {% assign words = content | number_of_words %}
 {% assign minutes = words | divided_by: 200 %}
 {% if minutes < 1 %}{% assign minutes = 1 %}{% endif %}
+{% assign ci = 0 %}
+{% for t in site.data.topics %}{% if t.slug == category %}{% assign ci = forloop.index0 | modulo: 3 %}{% endif %}{% endfor %}
+{% if ci == 0 %}{% assign badge = "bg-primary-container text-on-primary-container" %}
+{% elsif ci == 1 %}{% assign badge = "bg-secondary-container text-on-secondary-container" %}
+{% else %}{% assign badge = "bg-tertiary-container text-on-tertiary-container" %}{% endif %}
 
-<div class="container--narrow post-container">
+<div class="max-w-3xl mx-auto">
 
-  <nav class="breadcrumb">
-    <a href="{{ '/' | append: lang | append: '/' | relative_url }}">
+  <!-- Breadcrumb -->
+  <nav class="flex items-center flex-wrap gap-x-2 gap-y-1 font-label-sm text-label-sm text-on-surface-variant mb-10">
+    <a href="{{ '/' | append: lang | append: '/' | relative_url }}" class="hover:text-primary transition-colors">
       {% if lang == 'vi' %}Trang chủ{% else %}Home{% endif %}
     </a>
-    <span class="breadcrumb-sep">›</span>
+    <span class="text-outline">›</span>
     {% if topic_data %}
-      <a href="{{ '/' | append: lang | append: '/' | append: category | append: '/' | relative_url }}">
-        {{ topic_data[lang].name }}
+      <a href="{{ '/' | append: lang | append: '/' | append: category | append: '/' | relative_url }}" class="hover:text-primary transition-colors">
+        {{ cat_name }}
       </a>
-      <span class="breadcrumb-sep">›</span>
+      <span class="text-outline">›</span>
     {% endif %}
-    <span>{{ page.title | truncate: 40 }}</span>
+    <span class="text-on-surface truncate max-w-xs">{{ page.title | truncate: 48 }}</span>
   </nav>
 
   <article>
-    <header class="post-header">
+
+    <!-- Post header -->
+    <header class="mb-10">
       {% if topic_data %}
-        <span class="post-category">{{ topic_data[lang].name }}</span>
+        <div class="mb-5">
+          <span class="px-3 py-1 rounded-full {{ badge }} font-label-sm text-label-sm">{{ cat_name }}</span>
+        </div>
       {% endif %}
-      <h1 class="post-title">{{ page.title }}</h1>
-      <div class="post-meta">
-        <span class="post-date">
-          {% if lang == 'vi' %}
-            {{ page.date | date: "%-d tháng %-m, %Y" }}
-          {% else %}
-            {{ page.date | date: "%B %-d, %Y" }}
-          {% endif %}
+
+      <h1 class="font-headline-xl text-headline-xl text-on-surface mb-5">{{ page.title }}</h1>
+
+      <div class="flex items-center gap-3 font-label-md text-label-md text-on-surface-variant">
+        <span>
+          {% if lang == 'vi' %}{{ page.date | date: "%-d tháng %-m, %Y" }}{% else %}{{ page.date | date: "%B %-d, %Y" }}{% endif %}
         </span>
-        <span class="reading-time">
-          {{ minutes }}{% if lang == 'vi' %} phút đọc{% else %} min read{% endif %}
-        </span>
+        <span class="w-1 h-1 rounded-full bg-outline inline-block"></span>
+        <span>{{ minutes }}{% if lang == 'vi' %} phút đọc{% else %} min read{% endif %}</span>
       </div>
+
+      {% if page.image %}
+        <div class="mt-8 rounded-xl overflow-hidden">
+          <img src="{{ page.image }}" alt="{{ page.title }}" class="w-full h-auto object-cover">
+        </div>
+      {% endif %}
+
+      <div class="mt-8 border-t border-outline-variant"></div>
     </header>
 
+    <!-- Post body — prose styles applied via .post-content in style.css -->
     <div class="post-content">
       {{ content }}
     </div>
+
   </article>
 
-  <footer class="post-footer">
-    <a href="{{ '/' | append: lang | append: '/' | append: category | append: '/' | relative_url }}" class="back-link">
-      ← {% if lang == 'vi' %}Quay lại{% else %}Back to{% endif %}
-      {% if topic_data %}{{ topic_data[lang].name }}{% else %}{{ category }}{% endif %}
+  <!-- Post footer -->
+  <footer class="mt-16 pt-8 border-t border-outline-variant flex flex-wrap items-center justify-between gap-4">
+    <a href="{{ '/' | append: lang | append: '/' | append: category | append: '/' | relative_url }}"
+       class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border border-outline-variant text-on-surface-variant hover:border-primary hover:text-primary font-label-md text-label-md transition-all">
+      <span class="material-symbols-outlined" style="font-size:16px;">arrow_back</span>
+      {% if lang == 'vi' %}Quay lại{% else %}Back to{% endif %}
+      {% if topic_data %}{{ cat_name }}{% else %}{{ category }}{% endif %}
     </a>
     {% if page.lang_switch %}
-      <a href="{{ page.lang_switch | relative_url }}" class="back-link">
+      <a href="{{ page.lang_switch | relative_url }}"
+         class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border border-outline-variant text-on-surface-variant hover:border-primary hover:text-primary font-label-md text-label-md transition-all">
+        <span class="material-symbols-outlined" style="font-size:16px;">translate</span>
         {% if lang == 'vi' %}Read in English{% else %}Đọc tiếng Việt{% endif %}
       </a>
     {% endif %}
