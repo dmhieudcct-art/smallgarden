@@ -1,66 +1,24 @@
 <!DOCTYPE html>
-<html lang="{{ page.lang | default: 'en' }}">
+<html class="light" lang="{{ page.lang | default: 'en' }}">
 <head>
   {% include head.html %}
 </head>
-<body>
+<body class="bg-[#B8D8F8] text-on-surface font-body-md">
   {% include header.html %}
-
-  <div class="page-margins pt-40">
-
-    <!-- Left margin botanical — fixed, bottom-left corner, stroke-only line art -->
-    <div class="margin-botanical margin-botanical--left" aria-hidden="true">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 70 110"
-           fill="none" class="botanical-svg">
-        <!-- Stem -->
-        <path d="M14 108 C17 84 23 58 32 36 C37 22 43 10 48 3"
-              stroke="#E8A8B8" stroke-width="1.5" stroke-linecap="round"/>
-        <!-- Leaf right (lower) -->
-        <ellipse cx="40" cy="78" rx="13" ry="6"
-                 stroke="#E8A8B8" stroke-width="1.2"
-                 transform="rotate(-35 40 78)"/>
-        <!-- Leaf left (mid) -->
-        <ellipse cx="22" cy="53" rx="13" ry="6"
-                 stroke="#E8A8B8" stroke-width="1.2"
-                 transform="rotate(35 22 53)"/>
-        <!-- Leaf right (upper) -->
-        <ellipse cx="38" cy="28" rx="10" ry="5"
-                 stroke="#E8A8B8" stroke-width="1.2"
-                 transform="rotate(-25 38 28)"/>
-      </svg>
+  <main class="pt-40 max-w-[1400px] mx-auto relative min-h-screen bg-[#B8D8F8]">
+    <!-- Sidebar Pattern Left -->
+    <div class="hidden xl:block fixed left-0 top-0 bottom-0 w-[calc((100vw-1100px)/2)] bg-[#B8D8F8] z-30 overflow-hidden">
+      <div class="w-full h-full"></div>
     </div>
-
-    <!-- Central content panel -->
-    <div class="page-panel">
-      <main class="site-main">
-        {{ content }}
-      </main>
+    <!-- Sidebar Pattern Right -->
+    <div class="hidden xl:block fixed right-0 top-0 bottom-0 w-[calc((100vw-1100px)/2)] bg-[#B8D8F8] z-30 overflow-hidden">
+      <div class="w-full h-full"></div>
     </div>
-
-    <!-- Right margin botanical — fixed, bottom-right corner, stroke-only line art -->
-    <div class="margin-botanical margin-botanical--right" aria-hidden="true">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 70 110"
-           fill="none" class="botanical-svg">
-        <!-- Stem (mirrored) -->
-        <path d="M56 108 C53 84 47 58 38 36 C33 22 27 10 22 3"
-              stroke="#E8A8B8" stroke-width="1.5" stroke-linecap="round"/>
-        <!-- Leaf left (lower) -->
-        <ellipse cx="30" cy="78" rx="13" ry="6"
-                 stroke="#E8A8B8" stroke-width="1.2"
-                 transform="rotate(35 30 78)"/>
-        <!-- Leaf right (mid) -->
-        <ellipse cx="48" cy="53" rx="13" ry="6"
-                 stroke="#E8A8B8" stroke-width="1.2"
-                 transform="rotate(-35 48 53)"/>
-        <!-- Leaf left (upper) -->
-        <ellipse cx="32" cy="28" rx="10" ry="5"
-                 stroke="#E8A8B8" stroke-width="1.2"
-                 transform="rotate(25 32 28)"/>
-      </svg>
+    <!-- Central White Container -->
+    <div class="max-w-container-max-width mx-auto bg-white px-margin-mobile md:px-margin-desktop py-12 shadow-xl relative z-10 min-h-screen z-40">
+      {{ content }}
     </div>
-
-  </div><!-- .page-margins -->
-
+  </main>
   {% include footer.html %}
   <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
 </body>
