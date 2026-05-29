@@ -1,3 +1,10 @@
+---
+title: "Tự động hóa không thể chỉ dùng một công cụ duy nhất"
+date: 2026-05-29
+categories: automation
+lang: vi
+image: https://upload.wikimedia.org/wikipedia/commons/thumb/3f/Fronalpstock_big.jpg/1280px-Fronalpstock_big.jpg
+---
 Nhiều người bắt đầu hành trình tự động hóa với một công cụ yêu thích — rồi cố nhét tất cả mọi bài toán vào đó. Kết quả thường là: giải pháp quá phức tạp, khó bảo trì, và dễ vỡ.
 
 Thực tế là mỗi công cụ có một vùng mạnh riêng. Biết khi nào dùng cái gì — và kết hợp chúng như thế nào — mới là kỹ năng cốt lõi.
