@@ -1,0 +1,33 @@
+---
+layout: null
+permalink: /
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ site.title }}</title>
+  <script>
+    (function () {
+      var base = '{{ site.baseurl }}';
+      var lang = (navigator.language || navigator.userLanguage || 'en').slice(0, 2).toLowerCase();
+      window.location.replace(base + (lang === 'vi' ? '/vi/' : '/en/'));
+    })();
+  </script>
+  <noscript>
+    <meta http-equiv="refresh" content="0;url={{ site.baseurl }}/en/">
+  </noscript>
+  <style>
+    body { font-family: system-ui, sans-serif; display: flex; align-items: center; justify-content: center; min-height: 100vh; margin: 0; background: #fafaf8; }
+    .msg { text-align: center; color: #6b7280; }
+    a { color: #2d6a4f; text-decoration: none; margin: 0 0.5rem; }
+  </style>
+</head>
+<body>
+  <div class="msg">
+    <p>Redirecting… | Đang chuyển hướng…</p>
+    <p><a href="{{ site.baseurl }}/vi/">Tiếng Việt</a> · <a href="{{ site.baseurl }}/en/">English</a></p>
+  </div>
+</body>
+</html>

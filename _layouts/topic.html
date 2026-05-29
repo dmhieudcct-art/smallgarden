@@ -1,0 +1,51 @@
+---
+layout: default
+---
+{% assign lang = page.lang | default: 'en' %}
+{% assign slug = page.topic_slug %}
+{% assign topic_data = site.data.topics | where: "slug", slug | first %}
+{% assign posts = site.posts | where_exp: "post", "post.lang == lang and post.categories contains slug" %}
+
+<div class="container--narrow">
+  <div class="topic-header">
+    {% if topic_data %}
+      <span class="topic-header-icon">{{ topic_data.icon }}</span>
+      <h1>{{ topic_data[lang].name }}</h1>
+      <p>{{ topic_data[lang].description }}</p>
+    {% else %}
+      <h1>{{ page.title }}</h1>
+    {% endif %}
+  </div>
+
+  {% if posts.size == 0 %}
+    <div class="empty-state">
+      <p>
+        {% if lang == 'vi' %}Chưa có bài viết nào. Hãy quay lại sau!{% else %}No posts yet. Check back soon!{% endif %}
+      </p>
+    </div>
+  {% else %}
+    <p class="post-count">
+      {{ posts.size }}
+      {% if lang == 'vi' %}bài viết{% else %}{% if posts.size == 1 %}post{% else %}posts{% endif %}{% endif %}
+    </p>
+    <ul class="post-list">
+      {% for post in posts %}
+        <li class="post-list-item">
+          <a href="{{ post.url | relative_url }}" class="post-list-link">
+            <div class="post-list-date">
+              {% if lang == 'vi' %}
+                {{ post.date | date: "%-d tháng %-m, %Y" }}
+              {% else %}
+                {{ post.date | date: "%B %-d, %Y" }}
+              {% endif %}
+            </div>
+            <div class="post-list-title">{{ post.title }}</div>
+            {% if post.excerpt %}
+              <div class="post-list-excerpt">{{ post.excerpt | strip_html | truncate: 160 }}</div>
+            {% endif %}
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+</div>

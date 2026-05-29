@@ -1,0 +1,53 @@
+- slug: automation
+  icon: "⚙️"
+  vi:
+    name: Tự động hoá
+    description: Công cụ và quy trình để làm việc thông minh hơn
+  en:
+    name: Automation
+    description: Tools and workflows for working smarter
+
+- slug: management
+  icon: "📋"
+  vi:
+    name: Quản lý
+    description: Suy nghĩ về lãnh đạo và tổ chức
+  en:
+    name: Management
+    description: Thoughts on leadership and organization
+
+- slug: art
+  icon: "🎨"
+  vi:
+    name: Nghệ thuật
+    description: Sáng tạo, thẩm mỹ và biểu đạt
+  en:
+    name: Art
+    description: Creativity, aesthetics, and expression
+
+- slug: reflections
+  icon: "💭"
+  vi:
+    name: Suy ngẫm
+    description: Quan sát về cuộc sống và công việc
+  en:
+    name: Reflections
+    description: Observations on life and work
+
+- slug: books
+  icon: "📚"
+  vi:
+    name: Sách
+    description: Ghi chú và suy nghĩ từ những cuốn sách đã đọc
+  en:
+    name: Books
+    description: Notes and thoughts from reading
+
+- slug: travel
+  icon: "🗺️"
+  vi:
+    name: Du lịch
+    description: Nơi đã đến và những nơi muốn khám phá
+  en:
+    name: Travel
+    description: Places visited and places to discover

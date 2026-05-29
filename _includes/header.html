@@ -1,0 +1,39 @@
+{% assign lang = page.lang | default: 'en' %}
+{% assign home_url = '/' | append: lang | append: '/' %}
+{% if lang == 'vi' %}
+  {% assign other_lang_label = 'EN' %}
+{% else %}
+  {% assign other_lang_label = 'VI' %}
+{% endif %}
+
+<header class="site-header">
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <a href="{{ home_url | relative_url }}" class="nav-brand">
+      <span aria-hidden="true">🌿</span> {{ site.title }}
+    </a>
+
+    <div class="nav-menu" id="navMenu">
+      <div class="nav-topics">
+        {% for topic in site.data.topics %}
+          <a href="{{ '/' | append: lang | append: '/' | append: topic.slug | append: '/' | relative_url }}"
+             class="nav-link{% if page.topic_slug == topic.slug %} active{% endif %}">
+            {{ topic[lang].name }}
+          </a>
+        {% endfor %}
+      </div>
+      <div class="nav-actions">
+        {% if page.lang_switch %}
+          <a href="{{ page.lang_switch | relative_url }}" class="lang-btn" title="Switch language">
+            {{ other_lang_label }}
+          </a>
+        {% endif %}
+      </div>
+    </div>
+
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navMenu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+</header>

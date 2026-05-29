@@ -1,0 +1,64 @@
+---
+layout: default
+---
+{% assign lang = page.lang | default: 'en' %}
+{% assign category = page.categories | first %}
+{% assign topic_data = site.data.topics | where: "slug", category | first %}
+{% assign words = content | number_of_words %}
+{% assign minutes = words | divided_by: 200 %}
+{% if minutes < 1 %}{% assign minutes = 1 %}{% endif %}
+
+<div class="container--narrow post-container">
+
+  <nav class="breadcrumb">
+    <a href="{{ '/' | append: lang | append: '/' | relative_url }}">
+      {% if lang == 'vi' %}Trang chủ{% else %}Home{% endif %}
+    </a>
+    <span class="breadcrumb-sep">›</span>
+    {% if topic_data %}
+      <a href="{{ '/' | append: lang | append: '/' | append: category | append: '/' | relative_url }}">
+        {{ topic_data[lang].name }}
+      </a>
+      <span class="breadcrumb-sep">›</span>
+    {% endif %}
+    <span>{{ page.title | truncate: 40 }}</span>
+  </nav>
+
+  <article>
+    <header class="post-header">
+      {% if topic_data %}
+        <span class="post-category">{{ topic_data[lang].name }}</span>
+      {% endif %}
+      <h1 class="post-title">{{ page.title }}</h1>
+      <div class="post-meta">
+        <span class="post-date">
+          {% if lang == 'vi' %}
+            {{ page.date | date: "%-d tháng %-m, %Y" }}
+          {% else %}
+            {{ page.date | date: "%B %-d, %Y" }}
+          {% endif %}
+        </span>
+        <span class="reading-time">
+          {{ minutes }}{% if lang == 'vi' %} phút đọc{% else %} min read{% endif %}
+        </span>
+      </div>
+    </header>
+
+    <div class="post-content">
+      {{ content }}
+    </div>
+  </article>
+
+  <footer class="post-footer">
+    <a href="{{ '/' | append: lang | append: '/' | append: category | append: '/' | relative_url }}" class="back-link">
+      ← {% if lang == 'vi' %}Quay lại{% else %}Back to{% endif %}
+      {% if topic_data %}{{ topic_data[lang].name }}{% else %}{{ category }}{% endif %}
+    </a>
+    {% if page.lang_switch %}
+      <a href="{{ page.lang_switch | relative_url }}" class="back-link">
+        {% if lang == 'vi' %}Read in English{% else %}Đọc tiếng Việt{% endif %}
+      </a>
+    {% endif %}
+  </footer>
+
+</div>

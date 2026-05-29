@@ -1,0 +1,50 @@
+title: Small Garden
+description: A digital garden for thoughts and ideas
+
+url: ""
+baseurl: ""
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+
+# Plugins (GitHub Pages compatible)
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - .gitignore
+  - vendor/
+  - .git/
+
+# Defaults — sets lang and layout by directory
+defaults:
+  - scope:
+      path: "_posts/vi"
+    values:
+      lang: vi
+      layout: post
+      permalink: /vi/:categories/:title/
+  - scope:
+      path: "_posts/en"
+    values:
+      lang: en
+      layout: post
+      permalink: /en/:categories/:title/
+  - scope:
+      path: "vi"
+    values:
+      lang: vi
+  - scope:
+      path: "en"
+    values:
+      lang: en

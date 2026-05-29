@@ -1,0 +1,44 @@
+---
+layout: default
+---
+{% assign lang = page.lang | default: 'en' %}
+
+<div class="container--narrow">
+  <section class="home-intro">
+    <h1>
+      {% if lang == 'vi' %}Vườn Nhỏ{% else %}Small Garden{% endif %}
+    </h1>
+    <p>
+      {% if lang == 'vi' %}
+        Nơi ghi lại những suy nghĩ, học hỏi và quan sát về công việc và cuộc sống.
+      {% else %}
+        Where I record thoughts, learnings, and observations about work and life.
+      {% endif %}
+    </p>
+    <div class="home-intro-divider"></div>
+  </section>
+</div>
+
+<div class="container">
+  <section class="topics-section">
+    <div class="topics-grid">
+      {% for topic in site.data.topics %}
+        {% assign topic_posts = site.posts | where_exp: "post", "post.lang == lang and post.categories contains topic.slug" %}
+        <a href="{{ '/' | append: lang | append: '/' | append: topic.slug | append: '/' | relative_url }}" class="topic-card">
+          <span class="topic-card-icon">{{ topic.icon }}</span>
+          <div class="topic-card-name">{{ topic[lang].name }}</div>
+          <div class="topic-card-desc">{{ topic[lang].description }}</div>
+          <div class="topic-card-meta">
+            {% if topic_posts.size == 0 %}
+              {% if lang == 'vi' %}Chưa có bài viết{% else %}No posts yet{% endif %}
+            {% elsif topic_posts.size == 1 %}
+              1 {% if lang == 'vi' %}bài{% else %}post{% endif %}
+            {% else %}
+              {{ topic_posts.size }} {% if lang == 'vi' %}bài{% else %}posts{% endif %}
+            {% endif %}
+          </div>
+        </a>
+      {% endfor %}
+    </div>
+  </section>
+</div>
