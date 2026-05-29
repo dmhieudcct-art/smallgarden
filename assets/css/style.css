@@ -125,8 +125,8 @@ img { max-width: 100%; height: auto; display: block; }
 .margin-botanical--right { right: 0; justify-content: flex-start; padding-left: 1.25rem; }
 
 .botanical-svg {
-  width: 80px;
-  max-width: 120px;
+  width: 40px;
+  max-width: 40px;
   height: auto;
   display: block;
   opacity: 0.72;
@@ -165,34 +165,34 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 .leaf-tl {
-  width: 120px;
+  width: 32px;
   opacity: 0.38;
-  top: -35px;
-  left: -28px;
+  top: -10px;
+  left: -8px;
   transform: rotate(-15deg);
 }
 
 .leaf-bl {
-  width: 88px;
+  width: 24px;
   opacity: 0.45;
-  bottom: -20px;
+  bottom: -6px;
   left: 190px;
   transform: rotate(160deg);
 }
 
 .leaf-tr {
-  width: 108px;
+  width: 28px;
   opacity: 0.35;
-  top: -18px;
+  top: -6px;
   right: 140px;
   transform: rotate(45deg);
 }
 
 .leaf-br {
-  width: 140px;
+  width: 36px;
   opacity: 0.42;
-  bottom: -35px;
-  right: -18px;
+  bottom: -10px;
+  right: -6px;
   transform: rotate(-30deg);
 }
 
@@ -704,8 +704,8 @@ img { max-width: 100%; height: auto; display: block; }
   .nav-toggle { display: flex; }
 
   .leaf-bl, .leaf-tr { display: none; }
-  .leaf-tl { width: 80px; }
-  .leaf-br { width: 100px; }
+  .leaf-tl { width: 20px; }
+  .leaf-br { width: 24px; }
 
   .nav-menu {
     display: none;
