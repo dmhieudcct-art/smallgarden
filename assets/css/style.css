@@ -1,4 +1,17 @@
 .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; vertical-align: middle; }
+
+/* Pagefind UI theme */
+#pfSearch {
+  --pagefind-ui-scale: 0.9;
+  --pagefind-ui-primary: #2D5A27;
+  --pagefind-ui-text: #191c1d;
+  --pagefind-ui-background: #ffffff;
+  --pagefind-ui-border: #c2c7ce;
+  --pagefind-ui-tag: #E8F5E4;
+  --pagefind-ui-border-width: 1px;
+  --pagefind-ui-border-radius: 8px;
+  --pagefind-ui-font: 'Lora', serif;
+}
 body { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
 .garden-card:hover { border-color: #42617d; transform: translateY(-4px); }
 .garden-leaf-list li::before { content: "•"; color: #446648; font-weight: bold; display: inline-block; width: 1em; margin-left: -1em; }

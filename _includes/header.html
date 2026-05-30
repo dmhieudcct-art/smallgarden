@@ -24,17 +24,9 @@
     {% endfor %}
   </div>
   <div class="flex items-center gap-4">
-    <div style="position:relative;">
-      <button id="searchBtn" class="hover:bg-primary-container transition-all p-2 rounded-full active:scale-95 duration-200 text-outline">
-        <span class="material-symbols-outlined" style="font-size:44px;color:#2D5A27;">search</span>
-      </button>
-      <div id="searchBox" style="display:none;position:absolute;right:0;top:calc(100% + 8px);width:320px;background:#fff;border-radius:10px;box-shadow:0 6px 24px rgba(0,0,0,0.18);border:1px solid #c2c7ce;overflow:hidden;z-index:9999;">
-        <input id="searchInput" type="text"
-               placeholder="{% if lang == 'vi' %}Tìm bài viết...{% else %}Search posts...{% endif %}"
-               style="display:block;width:100%;padding:12px 16px;border:none;border-bottom:1px solid #e7e8e9;outline:none;font-size:16px;font-family:'Lora',serif;color:#191c1d;background:#fff;box-sizing:border-box;">
-        <div id="searchResults"></div>
-      </div>
-    </div>
+    <button id="searchBtn" class="hover:bg-primary-container transition-all p-2 rounded-full active:scale-95 duration-200 text-outline">
+      <span class="material-symbols-outlined" style="font-size:44px;color:#2D5A27;">search</span>
+    </button>
     {% if page.lang_switch %}
       <a href="{{ page.lang_switch | relative_url }}" class="text-[29px] [font-family:'Lora',serif] font-semibold text-[#2D5A27] bg-[#E8F5E4] border border-[#2D5A27]/40 px-4 py-1 rounded-full hover:bg-[#d4edcc] transition-colors cursor-pointer">
         {% if lang == 'vi' %}EN{% else %}VI{% endif %}
@@ -46,8 +38,10 @@
 </div>
 </nav>
 
-{% assign lang_posts = site.posts | where: "lang", lang %}
-<script>
-window.SEARCH_POSTS=[{% for post in lang_posts %}{"title":{{post.title|jsonify}},"excerpt":{{post.excerpt|strip_html|truncate:200|jsonify}},"url":"{{post.url|relative_url}}"}{% unless forloop.last %},{% endunless %}{% endfor %}];
-</script>
+<!-- Pagefind search overlay -->
+<div id="pfOverlay" style="display:none;position:fixed;top:0;right:0;bottom:0;left:0;z-index:9999;background:rgba(0,0,0,0.35);" data-pagefind-ignore>
+  <div style="max-width:640px;margin:110px auto 0;padding:0 16px;">
+    <div id="pfSearch"></div>
+  </div>
+</div>
 
