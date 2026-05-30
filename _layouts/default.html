@@ -16,7 +16,11 @@
     </div>
     <!-- Central White Container -->
     <div class="w-[60%] mx-auto bg-white px-margin-mobile md:px-margin-desktop py-12 shadow-xl relative z-10 min-h-screen z-40">
-      {{ content }}
+      <div class="pointer-events-none absolute inset-x-0 top-0 h-80 overflow-hidden" style="z-index:0;">
+        <img src="{{ '/assets/images/trangtri.png' | relative_url }}" alt=""
+             class="w-full h-full object-cover object-top" style="opacity:0.17;">
+      </div>
+      <div class="relative" style="z-index:1;">{{ content }}</div>
     </div>
   </main>
   {% include footer.html %}

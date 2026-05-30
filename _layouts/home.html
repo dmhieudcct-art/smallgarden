@@ -12,7 +12,7 @@ layout: default
 <!-- ─────────────────────────────────────────
      TAGLINE
      ───────────────────────────────────────── -->
-<header class="mb-section-gap max-w-3xl">
+<header class="mb-section-gap mx-auto text-center">
   <h1 class="font-headline-xl text-headline-xl text-primary mb-6">
     {% if lang == 'vi' %}Gieo những hạt mầm suy nghĩ.{% else %}Cultivating thoughts at the speed of nature.{% endif %}
   </h1>
@@ -56,7 +56,7 @@ layout: default
           <span class="px-3 py-1 rounded-full {{ _badge }} font-label-sm text-label-sm">{{ _name }}</span>
           <span class="text-on-surface-variant/60 font-label-sm text-label-sm">{{ _date }}</span>
         </div>
-        <h2 class="font-headline-lg text-headline-lg text-on-surface group-hover:text-primary transition-colors mb-4">{{ p0.title }}</h2>
+        <h2 class="font-headline-lg text-headline-lg text-[#2E4057] group-hover:text-primary transition-colors mb-4">{{ p0.title }}</h2>
         {% if p0.excerpt %}
           <p class="font-body-md text-body-md text-on-surface-variant line-clamp-3 mb-6">{{ p0.excerpt | strip_html | truncate: 200 }}</p>
         {% endif %}
@@ -86,7 +86,7 @@ layout: default
         <div class="mb-3">
           <span class="px-3 py-1 rounded-full {{ _badge }} font-label-sm text-label-sm">{{ _name }}</span>
         </div>
-        <h3 class="font-headline-md text-headline-md text-on-surface group-hover:text-primary transition-colors mb-3">{{ p1.title }}</h3>
+        <h3 class="font-headline-md text-headline-md text-[#2E4057] group-hover:text-primary transition-colors mb-3">{{ p1.title }}</h3>
         {% if p1.excerpt %}
           <p class="font-body-md text-body-md text-on-surface-variant line-clamp-4 mb-4">{{ p1.excerpt | strip_html | truncate: 160 }}</p>
         {% endif %}
@@ -115,7 +115,7 @@ layout: default
         <div class="mb-3">
           <span class="px-3 py-1 rounded-full {{ _badge }} font-label-sm text-label-sm">{{ _name }}</span>
         </div>
-        <h3 class="font-headline-md text-headline-md text-on-surface group-hover:text-primary transition-colors mb-3">{{ post.title }}</h3>
+        <h3 class="font-headline-md text-headline-md text-[#2E4057] group-hover:text-primary transition-colors mb-3">{{ post.title }}</h3>
         {% if post.excerpt %}
           <p class="font-body-md text-body-md text-on-surface-variant line-clamp-3 mb-4">{{ post.excerpt | strip_html | truncate: 120 }}</p>
         {% endif %}
@@ -151,7 +151,7 @@ layout: default
           <span class="px-3 py-1 rounded-full {{ _badge }} font-label-sm text-label-sm">{{ _name }}</span>
           <span class="text-on-surface-variant/60 font-label-sm text-label-sm">{{ _date }}</span>
         </div>
-        <h2 class="font-headline-lg text-headline-lg text-on-surface group-hover:text-primary transition-colors mb-4">{{ p5.title }}</h2>
+        <h2 class="font-headline-lg text-headline-lg text-[#2E4057] group-hover:text-primary transition-colors mb-4">{{ p5.title }}</h2>
         {% if p5.excerpt %}
           <p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed mb-8">{{ p5.excerpt | strip_html | truncate: 240 }}</p>
         {% endif %}
