@@ -78,7 +78,7 @@
 body { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; display:flex; flex-direction:column; min-height:100vh; }
 
 /* Footer font sizes */
-footer a.font-signature { font-size: 2.1rem !important; }
+footer a.font-signature { font-size: 3.15rem !important; }
 footer p.font-label-sm  { font-size: 1rem !important; }
 .garden-card:hover { border-color: #42617d; transform: translateY(-4px); }
 .garden-leaf-list li::before { content: "•"; color: #446648; font-weight: bold; display: inline-block; width: 1em; margin-left: -1em; }
