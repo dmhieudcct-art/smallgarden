@@ -1,5 +1,5 @@
 ---
-title: "Tự động hóa không thể chỉ dùng một công cụ duy nhất (phần 2)"
+title: "Tự tạo vòng tròn màu nước"
 date: 2026-05-29
 categories: automation
 lang: vi
