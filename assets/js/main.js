@@ -19,26 +19,19 @@
 
   if (!searchBtn || !pfOverlay) return;
 
-  // Initialise PagefindUI once (pagefind-ui.js is loaded via <head>)
-  var pfReady = false;
-  function initPagefind() {
-    if (pfReady || typeof PagefindUI === 'undefined') return;
-    new PagefindUI({
-      element: '#pfSearch',
-      showImages: false,
-      resetStyles: false
-    });
-    pfReady = true;
-  }
+  // window.load fires after all deferred scripts (incl. pagefind-ui.js) have run.
+  // This guarantees PagefindUI is defined before we call it.
+  window.addEventListener('load', function () {
+    if (typeof PagefindUI === 'undefined') return;
+    new PagefindUI({ element: '#pfSearch', showImages: false });
+  });
 
   function openSearch() {
-    initPagefind();
     pfOverlay.style.display = 'block';
-    // Focus the input Pagefind renders inside #pfSearch
     setTimeout(function () {
-      var inp = pfOverlay.querySelector('input[type=text]');
+      var inp = document.querySelector('#pfSearch input');
       if (inp) inp.focus();
-    }, 80);
+    }, 60);
   }
 
   function closeSearch() {
@@ -54,7 +47,6 @@
     }
   });
 
-  // Close on backdrop click (not on the search card itself)
   pfOverlay.addEventListener('click', function (e) {
     if (e.target === pfOverlay) closeSearch();
   });
