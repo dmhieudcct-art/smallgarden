@@ -5,7 +5,7 @@
 </head>
 <body class="bg-[#B8D8F8] text-on-surface font-body-md">
   {% include header.html %}
-  <main class="pt-[104px] md:pt-[120px] relative min-h-screen bg-[#B8D8F8]">
+  <main class="pt-[104px] md:pt-[120px] relative flex-1 bg-[#B8D8F8]">
     <!-- Sidebar Pattern Left -->
     <div class="hidden xl:block fixed left-0 top-0 bottom-0 w-[20vw] bg-[#B8D8F8] z-30 overflow-hidden">
       <div class="w-full h-full"></div>
@@ -15,12 +15,12 @@
       <div class="w-full h-full"></div>
     </div>
     <!-- Central White Container -->
-    <div class="w-[60%] mx-auto bg-white px-margin-mobile md:px-margin-desktop py-12 shadow-xl relative z-40 min-h-screen">
+    <div class="w-[60%] mx-auto bg-white px-margin-mobile md:px-margin-desktop py-12 shadow-xl relative z-40 min-h-screen flex flex-col">
       <div class="pointer-events-none absolute inset-x-0 top-0 h-80 overflow-hidden" data-pagefind-ignore style="z-index:0;">
         <img src="{{ '/assets/images/trangtri.png' | relative_url }}" alt=""
              class="w-full h-full object-cover object-top" style="opacity:0.17;">
       </div>
-      <div class="relative" data-pagefind-body style="z-index:1;">{{ content }}</div>
+      <div class="relative flex-1" data-pagefind-body style="z-index:1;">{{ content }}</div>
       {% include footer.html %}
     </div>
   </main>
