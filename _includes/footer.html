@@ -1,8 +1,8 @@
 {% assign lang = page.lang | default: 'en' %}
 {% assign home_url = '/' | append: lang | append: '/' | relative_url %}
 
-<footer>
-  <div class="w-[60%] mx-auto bg-white border-t border-outline-variant shadow-xl px-margin-mobile md:px-margin-desktop py-10 flex flex-col items-center gap-3 text-center">
+<footer class="border-t border-outline-variant mt-16" data-pagefind-ignore>
+  <div class="py-10 flex flex-col items-center gap-3 text-center">
 
     <a href="{{ home_url }}" class="font-signature text-3xl text-secondary no-underline">{{ site.title }}</a>
 
