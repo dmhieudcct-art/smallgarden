@@ -65,6 +65,11 @@
   padding: 14px 20px;
   font-size: 15px;
 }
+
+/* Hard overrides for transparent-background issue */
+.pagefind-ui { background: white !important; box-shadow: 0 4px 20px rgba(0,0,0,0.15) !important; border-radius: 8px !important; padding: 1rem !important; }
+.pagefind-ui__search-input { background: white !important; }
+.pagefind-ui__results { background: white !important; }
 body { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
 .garden-card:hover { border-color: #42617d; transform: translateY(-4px); }
 .garden-leaf-list li::before { content: "•"; color: #446648; font-weight: bold; display: inline-block; width: 1em; margin-left: -1em; }
