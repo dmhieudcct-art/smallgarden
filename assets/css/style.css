@@ -29,7 +29,7 @@
 #pfSearch .pagefind-ui__search-input::placeholder { color: #73777e; }
 
 /* Results area */
-#pfSearch .pagefind-ui__results-area { background: #ffffff; max-height: 420px; overflow-y: auto; }
+#pfSearch .pagefind-ui__results-area { background: #ffffff; max-height: 70vh; overflow-y: auto; }
 #pfSearch .pagefind-ui__results      { background: #ffffff; }
 
 /* Single result */

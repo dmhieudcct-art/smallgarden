@@ -24,6 +24,25 @@
   window.addEventListener('load', function () {
     if (typeof PagefindUI === 'undefined') return;
     new PagefindUI({ element: '#pfSearch', showImages: false, showSubResults: false });
+
+    // Deduplicate results by URL: watch for DOM changes and remove any
+    // result whose href has already been seen in the current result set.
+    var pfSearch = document.getElementById('pfSearch');
+    if (!pfSearch) return;
+    var observer = new MutationObserver(function () {
+      var seen = {};
+      pfSearch.querySelectorAll('.pagefind-ui__result').forEach(function (el) {
+        var a = el.querySelector('a[href]');
+        if (!a) return;
+        var url = a.getAttribute('href');
+        if (seen[url]) {
+          el.parentNode.removeChild(el);
+        } else {
+          seen[url] = true;
+        }
+      });
+    });
+    observer.observe(pfSearch, { childList: true, subtree: true });
   });
 
   function openSearch() {
