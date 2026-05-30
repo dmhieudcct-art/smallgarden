@@ -4,7 +4,6 @@
   /* ── Mobile nav toggle ─────────────────────────────── */
   var navToggle = document.getElementById('navToggle');
   var navMenu   = document.getElementById('navMenu');
-
   if (navToggle && navMenu) {
     navToggle.addEventListener('click', function () {
       var open = navMenu.classList.toggle('open');
@@ -15,31 +14,29 @@
   }
 
   /* ── Search ────────────────────────────────────────── */
-  var btn     = document.getElementById('searchBtn');
-  var panel   = document.getElementById('searchPanel');
-  var input   = document.getElementById('searchInput');
-  var results = document.getElementById('searchResults');
-  var closeBtn = document.getElementById('searchClose');
+  var searchBtn     = document.getElementById('searchBtn');
+  var searchBox     = document.getElementById('searchBox');
+  var searchInput   = document.getElementById('searchInput');
+  var searchResults = document.getElementById('searchResults');
 
-  // Bail out if any required element is missing
-  if (!btn || !panel || !input || !results || !closeBtn) return;
+  if (!searchBtn || !searchBox || !searchInput || !searchResults) return;
 
   var posts = window.SEARCH_POSTS || [];
 
-  function openPanel() {
-    panel.style.display = 'block';
-    input.value = '';
-    results.innerHTML = '';
-    input.focus();
+  function showBox() {
+    searchBox.style.display = 'block';
+    searchInput.value = '';
+    searchResults.innerHTML = '';
+    searchInput.focus();
   }
 
-  function closePanel() {
-    panel.style.display = 'none';
+  function hideBox() {
+    searchBox.style.display = 'none';
   }
 
-  function runSearch() {
-    var q = input.value.trim().toLowerCase();
-    if (!q) { results.innerHTML = ''; return; }
+  function doSearch() {
+    var q = searchInput.value.trim().toLowerCase();
+    if (!q) { searchResults.innerHTML = ''; return; }
 
     var hits = posts.filter(function (p) {
       return p.title.toLowerCase().indexOf(q) >= 0 ||
@@ -47,46 +44,49 @@
     });
 
     if (!hits.length) {
-      results.innerHTML =
-        '<p style="padding:12px 18px;color:#73777e;font-size:15px;font-family:sans-serif;">No results.</p>';
+      searchResults.innerHTML =
+        '<p style="padding:10px 16px;color:#73777e;font-size:14px;font-family:sans-serif;">No results.</p>';
       return;
     }
 
-    results.innerHTML = hits.slice(0, 10).map(function (p) {
-      var title = p.title
+    searchResults.innerHTML = hits.slice(0, 8).map(function (p) {
+      var t = p.title
         .replace(/&/g, '&amp;')
         .replace(/</g, '&lt;')
         .replace(/>/g, '&gt;');
-      var url = p.url.replace(/"/g, '%22');
-      return '<a href="' + url + '"' +
-        ' style="display:block;padding:11px 18px;text-decoration:none;' +
-        'border-bottom:1px solid #e7e8e9;color:#2D5A27;' +
-        'font-size:16px;font-family:\'Lora\',serif;font-weight:500;"' +
-        ' onmouseover="this.style.background=\'#f3f4f5\'"' +
-        ' onmouseout="this.style.background=\'\'">' +
-        title + '</a>';
+      return '<a href="' + p.url + '"'
+        + ' style="display:block;padding:10px 16px;text-decoration:none;'
+        + 'border-top:1px solid #e7e8e9;color:#2D5A27;'
+        + 'font-size:15px;font-family:Lora,serif;font-weight:500;"'
+        + ' onmouseover="this.style.background=\'#f3f4f5\'"'
+        + ' onmouseout="this.style.background=\'\'">'
+        + t + '</a>';
     }).join('');
   }
 
-  btn.addEventListener('click', function (e) {
+  /* Toggle on button click */
+  searchBtn.addEventListener('click', function (e) {
     e.stopPropagation();
-    if (panel.style.display === 'none' || panel.style.display === '') {
-      openPanel();
+    if (searchBox.style.display === 'block') {
+      hideBox();
     } else {
-      closePanel();
+      showBox();
     }
   });
 
-  closeBtn.addEventListener('click', closePanel);
-  input.addEventListener('input', runSearch);
+  /* Filter as user types */
+  searchInput.addEventListener('input', doSearch);
 
-  // Close when clicking the dark backdrop (not the card itself)
-  panel.addEventListener('click', function (e) {
-    if (e.target === panel) closePanel();
+  /* Close on outside click */
+  document.addEventListener('click', function (e) {
+    if (!searchBtn.contains(e.target) && !searchBox.contains(e.target)) {
+      hideBox();
+    }
   });
 
+  /* Close on Escape */
   document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape') closePanel();
+    if (e.key === 'Escape') hideBox();
   });
 
 })();

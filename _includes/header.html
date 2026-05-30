@@ -24,9 +24,17 @@
     {% endfor %}
   </div>
   <div class="flex items-center gap-4">
-    <button id="searchBtn" class="hover:bg-primary-container transition-all p-2 rounded-full active:scale-95 duration-200 text-outline">
-      <span class="material-symbols-outlined" style="font-size:44px;color:#2D5A27;">search</span>
-    </button>
+    <div style="position:relative;">
+      <button id="searchBtn" class="hover:bg-primary-container transition-all p-2 rounded-full active:scale-95 duration-200 text-outline">
+        <span class="material-symbols-outlined" style="font-size:44px;color:#2D5A27;">search</span>
+      </button>
+      <div id="searchBox" style="display:none;position:absolute;right:0;top:calc(100% + 8px);width:320px;background:#fff;border-radius:10px;box-shadow:0 6px 24px rgba(0,0,0,0.18);border:1px solid #c2c7ce;overflow:hidden;z-index:9999;">
+        <input id="searchInput" type="text"
+               placeholder="{% if lang == 'vi' %}Tìm bài viết...{% else %}Search posts...{% endif %}"
+               style="display:block;width:100%;padding:12px 16px;border:none;border-bottom:1px solid #e7e8e9;outline:none;font-size:16px;font-family:'Lora',serif;color:#191c1d;background:#fff;box-sizing:border-box;">
+        <div id="searchResults"></div>
+      </div>
+    </div>
     {% if page.lang_switch %}
       <a href="{{ page.lang_switch | relative_url }}" class="text-[29px] [font-family:'Lora',serif] font-semibold text-[#2D5A27] bg-[#E8F5E4] border border-[#2D5A27]/40 px-4 py-1 rounded-full hover:bg-[#d4edcc] transition-colors cursor-pointer">
         {% if lang == 'vi' %}EN{% else %}VI{% endif %}
@@ -43,18 +51,3 @@
 window.SEARCH_POSTS=[{% for post in lang_posts %}{"title":{{post.title|jsonify}},"excerpt":{{post.excerpt|strip_html|truncate:200|jsonify}},"url":"{{post.url|relative_url}}"}{% unless forloop.last %},{% endunless %}{% endfor %}];
 </script>
 
-<!-- Search panel: shown/hidden via style.display in main.js -->
-<div id="searchPanel" style="display:none;position:fixed;inset:0;z-index:55;background:rgba(0,0,0,0.2);">
-  <div style="max-width:580px;margin:125px auto 0;padding:0 16px;">
-    <div style="background:#fff;border-radius:12px;box-shadow:0 8px 32px rgba(0,0,0,0.18);overflow:hidden;border:1px solid #c2c7ce;">
-      <div style="display:flex;align-items:center;gap:12px;padding:14px 18px;border-bottom:1px solid #e7e8e9;">
-        <span class="material-symbols-outlined" style="font-size:20px;color:#73777e;flex-shrink:0;">search</span>
-        <input id="searchInput" type="text"
-               placeholder="{% if lang == 'vi' %}Tìm bài viết...{% else %}Search posts...{% endif %}"
-               style="flex:1;border:none;outline:none;font-size:17px;font-family:'Lora',serif;color:#191c1d;background:transparent;">
-        <button id="searchClose" style="border:none;background:none;cursor:pointer;color:#73777e;font-size:22px;line-height:1;padding:2px 4px;">✕</button>
-      </div>
-      <div id="searchResults" style="max-height:280px;overflow-y:auto;"></div>
-    </div>
-  </div>
-</div>
