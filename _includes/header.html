@@ -13,13 +13,13 @@
   <div class="font-signature text-4xl text-primary transform -rotate-2">
     <a href="{{ home_url }}">{{ site.title }}</a>
   </div>
-  <div class="hidden lg:flex gap-8 items-center">
+  <div class="hidden lg:flex gap-14 items-center">
     {% for topic in site.data.topics %}
       {% assign topic_url = '/' | append: lang | append: '/' | append: topic.slug | append: '/' | relative_url %}
       {% if page.topic_slug == topic.slug %}
-        <a class="font-body-md text-[36px] text-[#2D5A27] font-bold border-b-2 border-[#2D5A27] pb-1" href="{{ topic_url }}">{{ topic[lang].name }}</a>
+        <a class="text-[29px] [font-family:'Lora',serif] text-[#2D5A27] font-bold border-b-2 border-[#2D5A27] pb-1" href="{{ topic_url }}">{{ topic[lang].name }}</a>
       {% else %}
-        <a class="font-body-md text-[36px] text-[#2D5A27] hover:text-[#1a3a16] transition-colors" href="{{ topic_url }}">{{ topic[lang].name }}</a>
+        <a class="text-[29px] [font-family:'Lora',serif] text-[#2D5A27] hover:text-[#1a3a16] transition-colors" href="{{ topic_url }}">{{ topic[lang].name }}</a>
       {% endif %}
     {% endfor %}
   </div>
