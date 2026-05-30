@@ -51,12 +51,6 @@ layout: default
         <span>{{ minutes }}{% if lang == 'vi' %} phút đọc{% else %} min read{% endif %}</span>
       </div>
 
-      {% if page.image %}
-        <div class="mt-8 rounded-xl overflow-hidden">
-          <img src="{{ page.image }}" alt="{{ page.title }}" class="w-full h-auto object-cover">
-        </div>
-      {% endif %}
-
       <div class="mt-8 border-t border-outline-variant"></div>
     </header>
 
