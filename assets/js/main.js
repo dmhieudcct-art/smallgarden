@@ -59,11 +59,9 @@
   var langSwitch   = document.getElementById('langSwitch');
   var langModal    = document.getElementById('langModal');
   var langModalMsg = document.getElementById('langModalMsg');
-  var langModalTimer;
 
   function closeLangModal() {
     if (langModal) langModal.style.display = 'none';
-    clearTimeout(langModalTimer);
   }
 
   function showLangModal(targetLang) {
@@ -72,12 +70,12 @@
       ? 'Chưa có bài viết tương ứng cho ngôn ngữ bạn chọn'
       : 'No corresponding post available in your selected language';
     langModal.style.display = 'flex';
-    clearTimeout(langModalTimer);
-    langModalTimer = setTimeout(closeLangModal, 3000);
   }
 
   if (langModal) {
-    langModal.addEventListener('click', closeLangModal);
+    langModal.addEventListener('click', function (e) {
+      if (e.target === langModal) closeLangModal();
+    });
   }
 
   if (langSwitch) {
