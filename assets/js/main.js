@@ -55,4 +55,38 @@
     if (e.key === 'Escape') closeSearch();
   });
 
+  /* ── Post-page language switcher ───────────────────────── */
+  var langSwitch = document.getElementById('langSwitch');
+  var langSwitchMsg = document.getElementById('langSwitchMsg');
+  if (langSwitch) {
+    langSwitch.addEventListener('click', function () {
+      var path = window.location.pathname;
+      var targetPath;
+      if (path.indexOf('/vi/') !== -1) {
+        targetPath = path.replace('/vi/', '/en/');
+      } else if (path.indexOf('/en/') !== -1) {
+        targetPath = path.replace('/en/', '/vi/');
+      } else {
+        return;
+      }
+      fetch(targetPath, { method: 'HEAD' })
+        .then(function (res) {
+          if (res.ok) {
+            window.location.href = targetPath;
+          } else {
+            showLangMsg();
+          }
+        })
+        .catch(function () {
+          showLangMsg();
+        });
+    });
+
+    function showLangMsg() {
+      if (!langSwitchMsg) return;
+      langSwitchMsg.style.display = 'block';
+      setTimeout(function () { langSwitchMsg.style.display = 'none'; }, 4000);
+    }
+  }
+
 })();
