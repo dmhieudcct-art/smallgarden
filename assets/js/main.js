@@ -23,7 +23,7 @@
   // This guarantees PagefindUI is defined before we call it.
   window.addEventListener('load', function () {
     if (typeof PagefindUI === 'undefined') return;
-    new PagefindUI({ element: '#pfSearch', showImages: false });
+    new PagefindUI({ element: '#pfSearch', showImages: false, showSubResults: false });
   });
 
   function openSearch() {

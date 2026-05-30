@@ -74,7 +74,7 @@
   --pagefind-ui-primary: #2D5A27;
 }
 .pagefind-ui__form { background: white; padding: 1rem; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.2); }
-.pagefind-ui__results-container { background: white; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.2); }
+.pagefind-ui__results-container { background: white; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.2); max-height: 70vh; overflow-y: auto; }
 body { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
 .garden-card:hover { border-color: #42617d; transform: translateY(-4px); }
 .garden-leaf-list li::before { content: "•"; color: #446648; font-weight: bold; display: inline-block; width: 1em; margin-left: -1em; }
