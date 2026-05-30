@@ -71,7 +71,8 @@
     if (!q) { results.innerHTML = ''; return; }
 
     var hits = posts.filter(function (p) {
-      return p.title.toLowerCase().indexOf(q) !== -1;
+      return p.title.toLowerCase().indexOf(q) !== -1 ||
+             (p.excerpt && p.excerpt.toLowerCase().indexOf(q) !== -1);
     });
 
     if (!hits.length) {

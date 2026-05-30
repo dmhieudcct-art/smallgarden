@@ -25,7 +25,7 @@
   </div>
   <div class="flex items-center gap-4">
     <button id="searchBtn" class="hover:bg-primary-container transition-all p-2 rounded-full active:scale-95 duration-200 text-outline">
-      <span class="material-symbols-outlined" style="font-size:29px;">search</span>
+      <span class="material-symbols-outlined" style="font-size:44px;color:#2D5A27;">search</span>
     </button>
     {% if page.lang_switch %}
       <a href="{{ page.lang_switch | relative_url }}" class="text-[29px] [font-family:'Lora',serif] font-semibold text-[#2D5A27] bg-[#E8F5E4] border border-[#2D5A27]/40 px-4 py-1 rounded-full hover:bg-[#d4edcc] transition-colors cursor-pointer">
@@ -40,7 +40,7 @@
 
 {% assign lang_posts = site.posts | where: "lang", lang %}
 <script>
-window.__posts = [{% for post in lang_posts %}{"title":{{ post.title | jsonify }},"url":"{{ post.url | relative_url }}"}{% unless forloop.last %},{% endunless %}{% endfor %}];
+window.__posts = [{% for post in lang_posts %}{"title":{{ post.title | jsonify }},"excerpt":{{ post.excerpt | strip_html | truncate: 300 | jsonify }},"url":"{{ post.url | relative_url }}"}{% unless forloop.last %},{% endunless %}{% endfor %}];
 </script>
 
 <div id="searchOverlay" class="hidden fixed inset-0 z-[60] flex items-start justify-center" style="padding-top:130px;background:rgba(0,0,0,0.25);backdrop-filter:blur(3px);">
