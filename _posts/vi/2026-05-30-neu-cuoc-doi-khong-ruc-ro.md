@@ -2,7 +2,7 @@
 
 title: "Nếu cuộc đời không rực rỡ thì sao?"
 date: 2026-05-30
-categories: suy-ngam
+categories: [reflection]
 lang: vi
 image: /smallgarden/assets/images/neu-cuoc-doi-khong-ruc-ro.jpg
 excerpt: "Không phải ai cũng sống một cuộc đời rực rỡ. Và có lẽ, điều đó hoàn toàn ổn."

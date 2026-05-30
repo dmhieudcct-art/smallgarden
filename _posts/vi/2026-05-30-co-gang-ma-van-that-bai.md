@@ -2,7 +2,7 @@
 
 title: "Khi cố gắng hết sức nhưng cuộc đời vẫn đánh gục bạn"
 date: 2026-05-30
-categories: suy-ngam
+categories: [reflection]
 lang: vi
 image: /smallgarden/assets/images/co-gang-ma-van-that-bai.jpg
 excerpt: "Có những lúc bạn không làm gì sai cả — mà mọi thứ vẫn sụp đổ. Đó không phải là thất bại của bạn."

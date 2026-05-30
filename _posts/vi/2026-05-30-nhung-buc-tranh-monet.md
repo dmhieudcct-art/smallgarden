@@ -2,7 +2,7 @@
 
 title: "Những bức tranh tiêu biểu của Monet"
 date: 2026-05-30
-categories: nghe-thuat
+categories: [art]
 lang: vi
 image: /smallgarden/assets/images/nhung-buc-tranh-monet.jpg
 excerpt: "Monet không vẽ vật thể — ông vẽ ánh sáng đang chạm vào vật thể. Đó là điều khiến tranh ông không thể nhầm với ai khác."

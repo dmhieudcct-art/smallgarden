@@ -2,7 +2,7 @@
 
 title: "Phần mềm nhập liệu tự động qua ảnh chụp"
 date: 2026-05-30
-categories: automation
+categories: [automation]
 lang: vi
 image: /smallgarden/assets/images/phan-mem-nhap-lieu-tu-dong.jpg
 excerpt: "Chụp ảnh hóa đơn, biên bản, hay bảng số liệu — và để phần mềm tự đọc, tự nhập. Công nghệ này đang ở đâu và dùng được gì?"

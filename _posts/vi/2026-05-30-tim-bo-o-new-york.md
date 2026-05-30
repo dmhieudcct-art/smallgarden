@@ -2,7 +2,7 @@
 
 title: "Sơ lược cuốn sách Tìm bố ở New York"
 date: 2026-05-30
-categories: sach
+categories: [books]
 lang: vi
 image: /smallgarden/assets/images/tim-bo-o-new-york.jpg
 excerpt: "Một đứa trẻ đi tìm người cha chưa từng gặp — nhưng thứ nó tìm được không hẳn là bố."

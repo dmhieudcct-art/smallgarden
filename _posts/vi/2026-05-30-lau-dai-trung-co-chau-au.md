@@ -2,7 +2,7 @@
 
 title: "Một lâu đài trung cổ châu Âu và lịch sử ra đời"
 date: 2026-05-30
-categories: du-lich
+categories: [travel]
 lang: vi
 image: /smallgarden/assets/images/lau-dai-trung-co-chau-au.jpg
 excerpt: "Những lâu đài châu Âu không chỉ là kiến trúc — chúng là lát cắt của quyền lực, nỗi sợ, và khao khát tồn tại qua thời gian."
