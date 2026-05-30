@@ -85,7 +85,9 @@ footer p.font-label-sm  { font-size: 1rem !important; }
 .garden-leaf-list li::before { content: "•"; color: #446648; font-weight: bold; display: inline-block; width: 1em; margin-left: -1em; }
 
 /* Post body prose */
-.post-content { font-family: 'DM Sans', sans-serif; font-size: 20px; line-height: 1.8; color: #191c1d; }
+/* Post wrapper: fill white card width (card padding provides edge spacing) */
+[data-pagefind-body] > div.max-w-3xl { max-width: 100%; }
+.post-content { font-family: 'DM Sans', sans-serif; font-size: 1.15rem; line-height: 1.8; color: #191c1d; }
 .post-content p { margin-bottom: 1.4em; }
 .post-content h1,
 .post-content h2,
