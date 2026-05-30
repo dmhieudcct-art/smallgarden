@@ -38,30 +38,72 @@
     });
   }
 
-  // ── Search overlay open / close ──────────────────────
-  var searchBtn = document.getElementById('searchBtn');
-  var overlay   = document.getElementById('searchOverlay');
-  var input     = document.getElementById('searchInput');
-  var closeBtn  = document.getElementById('searchClose');
+  // ── Search ───────────────────────────────────────────
+  var searchBtn  = document.getElementById('searchBtn');
+  var overlay    = document.getElementById('searchOverlay');
+  var input      = document.getElementById('searchInput');
+  var results    = document.getElementById('searchResults');
+  var closeBtn   = document.getElementById('searchClose');
+  var posts      = window.__posts || [];
 
   if (!searchBtn || !overlay) return;
 
+  function escHtml(s) {
+    return s.replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;');
+  }
+
   function openSearch() {
     overlay.classList.remove('hidden');
-    var results = document.getElementById('searchResults');
-    if (results) results.innerHTML = '';
-    if (input) {
-      input.value = '';
-      setTimeout(function () { input.focus(); }, 50);
-    }
+    input.value = '';
+    results.innerHTML = '';
+    setTimeout(function () { input.focus(); }, 50);
   }
 
   function closeSearch() {
     overlay.classList.add('hidden');
   }
 
+  function renderResults(query) {
+    var q = query.trim().toLowerCase();
+    if (!q) { results.innerHTML = ''; return; }
+
+    var hits = posts.filter(function (p) {
+      return p.title.toLowerCase().indexOf(q) !== -1 ||
+             (p.excerpt && p.excerpt.toLowerCase().indexOf(q) !== -1);
+    });
+
+    if (!hits.length) {
+      results.innerHTML =
+        '<p style="padding:1rem 1.25rem;font-size:15px;color:#73777e;">No results found.</p>';
+      return;
+    }
+
+    results.innerHTML = hits.map(function (p) {
+      return (
+        '<a href="' + escHtml(p.url) + '"' +
+        ' style="display:flex;align-items:center;gap:12px;padding:0.75rem 1.25rem;' +
+        'text-decoration:none;color:#191c1d;transition:background 0.15s;"' +
+        ' onmouseover="this.style.background=\'#f3f4f5\'"' +
+        ' onmouseout="this.style.background=\'\'">' +
+        '<span class="material-symbols-outlined" style="font-size:18px;color:#73777e;flex-shrink:0;">article</span>' +
+        '<span style="font-size:17px;font-family:\'Lora\',serif;">' + escHtml(p.title) + '</span>' +
+        '</a>'
+      );
+    }).join('');
+  }
+
   searchBtn.addEventListener('click', openSearch);
-  if (closeBtn) closeBtn.addEventListener('click', closeSearch);
-  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeSearch(); });
-  overlay.addEventListener('click', function (e) { if (e.target === overlay) closeSearch(); });
+  closeBtn.addEventListener('click', closeSearch);
+  input.addEventListener('input', function () { renderResults(this.value); });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeSearch();
+  });
+
+  overlay.addEventListener('click', function (e) {
+    if (e.target === overlay) closeSearch();
+  });
 })();
