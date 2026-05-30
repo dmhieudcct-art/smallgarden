@@ -38,12 +38,10 @@
 </div>
 </nav>
 
-{% assign lang_posts = site.posts | where: "lang", lang %}
-<script>
-window.__posts = [{% for post in lang_posts %}{"title":{{ post.title | jsonify }},"excerpt":{{ post.excerpt | strip_html | truncate: 300 | jsonify }},"url":"{{ post.url | relative_url }}"}{% unless forloop.last %},{% endunless %}{% endfor %}];
-</script>
-
-<div id="searchOverlay" class="hidden fixed inset-0 z-[60] flex items-start justify-center" style="padding-top:130px;background:rgba(0,0,0,0.25);backdrop-filter:blur(3px);">
+<div id="searchOverlay" class="hidden fixed inset-0 z-[60] flex items-start justify-center"
+     data-lang="{{ lang }}"
+     data-search-index="{{ '/search.json' | relative_url }}"
+     style="padding-top:130px;background:rgba(0,0,0,0.25);backdrop-filter:blur(3px);">
   <div class="bg-white rounded-xl shadow-2xl w-full max-w-xl mx-4 overflow-hidden border border-outline-variant">
     <div class="flex items-center gap-3 px-5 py-4 border-b border-outline-variant">
       <span class="material-symbols-outlined text-outline" style="font-size:22px;">search</span>
