@@ -56,16 +56,40 @@
   });
 
   /* ── Post-page language switcher ───────────────────────── */
-  var langSwitch = document.getElementById('langSwitch');
-  var langSwitchMsg = document.getElementById('langSwitchMsg');
+  var langSwitch   = document.getElementById('langSwitch');
+  var langModal    = document.getElementById('langModal');
+  var langModalMsg = document.getElementById('langModalMsg');
+  var langModalTimer;
+
+  function closeLangModal() {
+    if (langModal) langModal.style.display = 'none';
+    clearTimeout(langModalTimer);
+  }
+
+  function showLangModal(targetLang) {
+    if (!langModal || !langModalMsg) return;
+    langModalMsg.textContent = targetLang === 'vi'
+      ? 'Chưa có bài viết tương ứng cho ngôn ngữ bạn chọn'
+      : 'No corresponding post available in your selected language';
+    langModal.style.display = 'flex';
+    clearTimeout(langModalTimer);
+    langModalTimer = setTimeout(closeLangModal, 3000);
+  }
+
+  if (langModal) {
+    langModal.addEventListener('click', closeLangModal);
+  }
+
   if (langSwitch) {
     langSwitch.addEventListener('click', function () {
       var path = window.location.pathname;
-      var targetPath;
+      var targetPath, targetLang;
       if (path.indexOf('/vi/') !== -1) {
         targetPath = path.replace('/vi/', '/en/');
+        targetLang = 'en';
       } else if (path.indexOf('/en/') !== -1) {
         targetPath = path.replace('/en/', '/vi/');
+        targetLang = 'vi';
       } else {
         return;
       }
@@ -74,19 +98,13 @@
           if (res.ok) {
             window.location.href = targetPath;
           } else {
-            showLangMsg();
+            showLangModal(targetLang);
           }
         })
         .catch(function () {
-          showLangMsg();
+          showLangModal(targetLang);
         });
     });
-
-    function showLangMsg() {
-      if (!langSwitchMsg) return;
-      langSwitchMsg.style.display = 'block';
-      setTimeout(function () { langSwitchMsg.style.display = 'none'; }, 4000);
-    }
   }
 
 })();
