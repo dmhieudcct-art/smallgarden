@@ -12,14 +12,24 @@ layout: default
 <!-- ─────────────────────────────────────────
      TAGLINE
      ───────────────────────────────────────── -->
-<header class="mb-section-gap mx-auto text-center">
-  <h1 class="font-headline-xl text-headline-xl text-primary mb-6">
-    {% if lang == 'vi' %}Gieo những hạt mầm suy nghĩ.{% else %}Cultivating thoughts at the speed of nature.{% endif %}
-  </h1>
-  <p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
-    {% if lang == 'vi' %}Vườn nhỏ kỹ thuật số — nơi lưu giữ những suy nghĩ, học hỏi và quan sát về công việc và cuộc sống.{% else %}A digital garden for slow, deliberate thought. No algorithms — just ideas growing at their own pace.{% endif %}
-  </p>
-</header>
+<div class="relative mb-section-gap">
+  <!-- Left decorative (flipped) -->
+  <img src="{{ '/assets/images/trangtri.png' | relative_url }}" alt=""
+       class="pointer-events-none select-none absolute left-0 top-1/2 h-44 w-auto"
+       style="opacity:0.20; transform: translateY(-50%) scaleX(-1);">
+  <!-- Right decorative -->
+  <img src="{{ '/assets/images/trangtri.png' | relative_url }}" alt=""
+       class="pointer-events-none select-none absolute right-0 top-1/2 h-44 w-auto"
+       style="opacity:0.20; transform: translateY(-50%);">
+  <header class="mx-auto text-center px-[18%]">
+    <h1 class="font-headline-xl text-headline-xl text-primary mb-6">
+      {% if lang == 'vi' %}Gieo những hạt mầm suy nghĩ.{% else %}Cultivating thoughts at the speed of nature.{% endif %}
+    </h1>
+    <p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+      {% if lang == 'vi' %}Vườn nhỏ kỹ thuật số — nơi lưu giữ những suy nghĩ, học hỏi và quan sát về công việc và cuộc sống.{% else %}A digital garden for slow, deliberate thought. No algorithms — just ideas growing at their own pace.{% endif %}
+    </p>
+  </header>
+</div>
 
 <!-- ─────────────────────────────────────────
      ROWS 1 & 2  (12-col grid)
