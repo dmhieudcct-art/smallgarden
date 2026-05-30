@@ -28,11 +28,11 @@
       <span class="material-symbols-outlined">search</span>
     </button>
     {% if page.lang_switch %}
-      <a href="{{ page.lang_switch | relative_url }}" class="font-label-md text-label-md text-primary font-bold cursor-pointer">
+      <a href="{{ page.lang_switch | relative_url }}" class="text-[29px] [font-family:'Lora',serif] font-semibold text-[#2D5A27] bg-[#E8F5E4] border border-[#2D5A27]/40 px-4 py-1 rounded-full hover:bg-[#d4edcc] transition-colors cursor-pointer">
         {% if lang == 'vi' %}EN{% else %}VI{% endif %}
       </a>
     {% else %}
-      <span class="font-label-md text-label-md text-primary font-bold cursor-pointer">VI/EN</span>
+      <span class="text-[29px] [font-family:'Lora',serif] font-semibold text-[#2D5A27] bg-[#E8F5E4] border border-[#2D5A27]/40 px-4 py-1 rounded-full cursor-pointer">VI/EN</span>
     {% endif %}
   </div>
 </div>
