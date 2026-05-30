@@ -1,109 +1,92 @@
 (function () {
   'use strict';
 
-  // ── Mobile nav toggle ────────────────────────────────
-  var toggle = document.getElementById('navToggle');
-  var menu   = document.getElementById('navMenu');
+  /* ── Mobile nav toggle ─────────────────────────────── */
+  var navToggle = document.getElementById('navToggle');
+  var navMenu   = document.getElementById('navMenu');
 
-  if (toggle && menu) {
-    toggle.addEventListener('click', function () {
-      var open = menu.classList.toggle('open');
-      toggle.classList.toggle('open', open);
-      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-      toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  if (navToggle && navMenu) {
+    navToggle.addEventListener('click', function () {
+      var open = navMenu.classList.toggle('open');
+      navToggle.classList.toggle('open', open);
+      navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
       document.body.style.overflow = open ? 'hidden' : '';
     });
-
-    document.addEventListener('click', function (e) {
-      if (
-        menu.classList.contains('open') &&
-        !menu.contains(e.target) &&
-        !toggle.contains(e.target)
-      ) {
-        menu.classList.remove('open');
-        toggle.classList.remove('open');
-        toggle.setAttribute('aria-expanded', 'false');
-        toggle.setAttribute('aria-label', 'Open menu');
-        document.body.style.overflow = '';
-      }
-    });
-
-    window.addEventListener('resize', function () {
-      if (window.innerWidth > 768 && menu.classList.contains('open')) {
-        menu.classList.remove('open');
-        toggle.classList.remove('open');
-        toggle.setAttribute('aria-expanded', 'false');
-        document.body.style.overflow = '';
-      }
-    });
   }
 
-  // ── Search ───────────────────────────────────────────
-  var searchBtn  = document.getElementById('searchBtn');
-  var overlay    = document.getElementById('searchOverlay');
-  var input      = document.getElementById('searchInput');
-  var results    = document.getElementById('searchResults');
-  var closeBtn   = document.getElementById('searchClose');
-  var posts      = window.__posts || [];
+  /* ── Search ────────────────────────────────────────── */
+  var btn     = document.getElementById('searchBtn');
+  var panel   = document.getElementById('searchPanel');
+  var input   = document.getElementById('searchInput');
+  var results = document.getElementById('searchResults');
+  var closeBtn = document.getElementById('searchClose');
 
-  if (!searchBtn || !overlay) return;
+  // Bail out if any required element is missing
+  if (!btn || !panel || !input || !results || !closeBtn) return;
 
-  function escHtml(s) {
-    return s.replace(/&/g, '&amp;')
-            .replace(/</g, '&lt;')
-            .replace(/>/g, '&gt;')
-            .replace(/"/g, '&quot;');
-  }
+  var posts = window.SEARCH_POSTS || [];
 
-  function openSearch() {
-    overlay.classList.remove('hidden');
+  function openPanel() {
+    panel.style.display = 'block';
     input.value = '';
     results.innerHTML = '';
-    setTimeout(function () { input.focus(); }, 50);
+    input.focus();
   }
 
-  function closeSearch() {
-    overlay.classList.add('hidden');
+  function closePanel() {
+    panel.style.display = 'none';
   }
 
-  function renderResults(query) {
-    var q = query.trim().toLowerCase();
+  function runSearch() {
+    var q = input.value.trim().toLowerCase();
     if (!q) { results.innerHTML = ''; return; }
 
     var hits = posts.filter(function (p) {
-      return p.title.toLowerCase().indexOf(q) !== -1 ||
-             (p.excerpt && p.excerpt.toLowerCase().indexOf(q) !== -1);
+      return p.title.toLowerCase().indexOf(q) >= 0 ||
+             (p.excerpt && p.excerpt.toLowerCase().indexOf(q) >= 0);
     });
 
     if (!hits.length) {
       results.innerHTML =
-        '<p style="padding:1rem 1.25rem;font-size:15px;color:#73777e;">No results found.</p>';
+        '<p style="padding:12px 18px;color:#73777e;font-size:15px;font-family:sans-serif;">No results.</p>';
       return;
     }
 
-    results.innerHTML = hits.map(function (p) {
-      return (
-        '<a href="' + escHtml(p.url) + '"' +
-        ' style="display:flex;align-items:center;gap:12px;padding:0.75rem 1.25rem;' +
-        'text-decoration:none;color:#191c1d;transition:background 0.15s;"' +
+    results.innerHTML = hits.slice(0, 10).map(function (p) {
+      var title = p.title
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;');
+      var url = p.url.replace(/"/g, '%22');
+      return '<a href="' + url + '"' +
+        ' style="display:block;padding:11px 18px;text-decoration:none;' +
+        'border-bottom:1px solid #e7e8e9;color:#2D5A27;' +
+        'font-size:16px;font-family:\'Lora\',serif;font-weight:500;"' +
         ' onmouseover="this.style.background=\'#f3f4f5\'"' +
         ' onmouseout="this.style.background=\'\'">' +
-        '<span class="material-symbols-outlined" style="font-size:18px;color:#73777e;flex-shrink:0;">article</span>' +
-        '<span style="font-size:17px;font-family:\'Lora\',serif;">' + escHtml(p.title) + '</span>' +
-        '</a>'
-      );
+        title + '</a>';
     }).join('');
   }
 
-  searchBtn.addEventListener('click', openSearch);
-  closeBtn.addEventListener('click', closeSearch);
-  input.addEventListener('input', function () { renderResults(this.value); });
+  btn.addEventListener('click', function (e) {
+    e.stopPropagation();
+    if (panel.style.display === 'none' || panel.style.display === '') {
+      openPanel();
+    } else {
+      closePanel();
+    }
+  });
+
+  closeBtn.addEventListener('click', closePanel);
+  input.addEventListener('input', runSearch);
+
+  // Close when clicking the dark backdrop (not the card itself)
+  panel.addEventListener('click', function (e) {
+    if (e.target === panel) closePanel();
+  });
 
   document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape') closeSearch();
+    if (e.key === 'Escape') closePanel();
   });
 
-  overlay.addEventListener('click', function (e) {
-    if (e.target === overlay) closeSearch();
-  });
 })();

@@ -40,20 +40,21 @@
 
 {% assign lang_posts = site.posts | where: "lang", lang %}
 <script>
-window.__posts = [{% for post in lang_posts %}{"title":{{ post.title | jsonify }},"excerpt":{{ post.excerpt | strip_html | truncate: 300 | jsonify }},"url":"{{ post.url | relative_url }}"}{% unless forloop.last %},{% endunless %}{% endfor %}];
+window.SEARCH_POSTS=[{% for post in lang_posts %}{"title":{{post.title|jsonify}},"excerpt":{{post.excerpt|strip_html|truncate:200|jsonify}},"url":"{{post.url|relative_url}}"}{% unless forloop.last %},{% endunless %}{% endfor %}];
 </script>
 
-<div id="searchOverlay" class="hidden fixed inset-0 z-[60] flex items-start justify-center" style="padding-top:130px;background:rgba(0,0,0,0.25);backdrop-filter:blur(3px);">
-  <div class="bg-white rounded-xl shadow-2xl w-full max-w-xl mx-4 overflow-hidden border border-outline-variant">
-    <div class="flex items-center gap-3 px-5 py-4 border-b border-outline-variant">
-      <span class="material-symbols-outlined text-outline" style="font-size:22px;">search</span>
-      <input id="searchInput" type="text"
-             placeholder="{% if lang == 'vi' %}Tìm kiếm bài viết...{% else %}Search posts...{% endif %}"
-             class="flex-1 outline-none text-on-surface bg-transparent [font-family:'Lora',serif]" style="font-size:18px;">
-      <button id="searchClose" class="text-outline hover:text-on-surface transition-colors">
-        <span class="material-symbols-outlined" style="font-size:22px;">close</span>
-      </button>
+<!-- Search panel: shown/hidden via style.display in main.js -->
+<div id="searchPanel" style="display:none;position:fixed;inset:0;z-index:55;background:rgba(0,0,0,0.2);">
+  <div style="max-width:580px;margin:125px auto 0;padding:0 16px;">
+    <div style="background:#fff;border-radius:12px;box-shadow:0 8px 32px rgba(0,0,0,0.18);overflow:hidden;border:1px solid #c2c7ce;">
+      <div style="display:flex;align-items:center;gap:12px;padding:14px 18px;border-bottom:1px solid #e7e8e9;">
+        <span class="material-symbols-outlined" style="font-size:20px;color:#73777e;flex-shrink:0;">search</span>
+        <input id="searchInput" type="text"
+               placeholder="{% if lang == 'vi' %}Tìm bài viết...{% else %}Search posts...{% endif %}"
+               style="flex:1;border:none;outline:none;font-size:17px;font-family:'Lora',serif;color:#191c1d;background:transparent;">
+        <button id="searchClose" style="border:none;background:none;cursor:pointer;color:#73777e;font-size:22px;line-height:1;padding:2px 4px;">✕</button>
+      </div>
+      <div id="searchResults" style="max-height:280px;overflow-y:auto;"></div>
     </div>
-    <div id="searchResults" class="max-h-72 overflow-y-auto"></div>
   </div>
 </div>
