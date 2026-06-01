@@ -133,4 +133,6 @@ div.max-w-3xl > nav { font-size: 26px !important; }
   body .post-content h4 { font-size: 16px !important; }
   body article h1 { font-size: 26px !important; }
   div.max-w-3xl { max-width: 100% !important; padding-left: 1rem !important; padding-right: 1rem !important; }
+  body { width: 100% !important; overflow-x: hidden !important; }
+  .site-wrapper, .page-wrapper, main, .container { width: 100% !important; max-width: 100% !important; }
 }
