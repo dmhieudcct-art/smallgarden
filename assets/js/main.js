@@ -112,7 +112,8 @@
   var sliderNext    = document.getElementById('sliderNext');
 
   if (relatedSlider && sliderPrev && sliderNext) {
-    var SCROLL_AMT = 276;
+
+    function scrollAmt() { return relatedSlider.clientWidth; }
 
     function syncSliderBtns() {
       sliderPrev.style.opacity = relatedSlider.scrollLeft <= 2 ? '0.35' : '1';
@@ -120,11 +121,11 @@
     }
 
     sliderPrev.addEventListener('click', function () {
-      relatedSlider.scrollBy({ left: -SCROLL_AMT, behavior: 'smooth' });
+      relatedSlider.scrollBy({ left: -scrollAmt(), behavior: 'smooth' });
     });
 
     sliderNext.addEventListener('click', function () {
-      relatedSlider.scrollBy({ left: SCROLL_AMT, behavior: 'smooth' });
+      relatedSlider.scrollBy({ left: scrollAmt(), behavior: 'smooth' });
     });
 
     relatedSlider.addEventListener('scroll', syncSliderBtns);

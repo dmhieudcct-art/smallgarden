@@ -125,12 +125,12 @@ div.max-w-3xl > nav { font-size: 26px !important; }
 .post-content td { padding: 0.6em 0.9em; border: 1px solid #c2c7ce; vertical-align: top; }
 
 /* ── Related posts slider ���──────────────────────────────────────────────────── */
-.related-slider-wrapper { position: relative; padding: 0 2.5rem; }
+.related-slider-wrapper { position: relative; padding: 0 2.75rem; }
 .related-slider { display: flex; gap: 1rem; overflow-x: auto; scroll-behavior: smooth; scrollbar-width: none; -ms-overflow-style: none; padding: 0.25rem 0; }
 .related-slider::-webkit-scrollbar { display: none; }
-.related-card { min-width: 260px; max-width: 260px; flex-shrink: 0; }
-.slider-btn { position: absolute; top: 50%; transform: translateY(-50%); z-index: 10; width: 40px; height: 40px; border-radius: 50%; background: #ffffff; border: 1px solid #c2c7ce; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.12); transition: box-shadow 0.2s, opacity 0.2s; padding: 0; }
-.slider-btn:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.18); }
+.related-card { flex: 0 0 calc(33.333% - 0.667rem); }
+.slider-btn { position: absolute; top: 50%; transform: translateY(-50%); z-index: 10; width: 44px; height: 44px; border-radius: 50%; background: #ffffff; border: 1px solid #c2c7ce; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.14); transition: box-shadow 0.2s, opacity 0.2s; padding: 0; }
+.slider-btn:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.2); }
 .slider-prev { left: 0; }
 .slider-next { right: 0; }
 
