@@ -1,0 +1,54 @@
+---
+layout: default
+---
+{% assign lang = page.lang | default: 'en' %}
+{% assign posts = site.posts | where: "lang", lang %}
+
+<!-- Page Header -->
+<header class="mb-section-gap">
+  <h1 class="font-headline-xl text-2xl md:text-headline-xl font-bold text-primary mb-2">
+    {% if lang == 'vi' %}Tất cả bài viết{% else %}All Posts{% endif %}
+  </h1>
+  <p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest">
+    {{ posts.size }}
+    {% if lang == 'vi' %}bài viết{% else %}{% if posts.size == 1 %}post{% else %}posts{% endif %}{% endif %}
+  </p>
+</header>
+
+<!-- Post List -->
+{% if posts.size == 0 %}
+  <div class="py-16 text-center border border-outline-variant rounded-lg">
+    <p class="font-body-lg text-body-lg text-on-surface-variant">
+      {% if lang == 'vi' %}Chưa có bài viết nào. Hãy quay lại sau!{% else %}No posts yet. Check back soon!{% endif %}
+    </p>
+  </div>
+{% else %}
+  <div class="flex flex-col gap-4">
+    {% for post in posts %}
+      {% assign _slug = post.categories | first %}
+      {% assign _topic = site.data.topics | where: "slug", _slug | first %}
+      {% assign _name = _topic[lang].name | default: _slug %}
+      {% assign _ci = 0 %}
+      {% for t in site.data.topics %}{% if t.slug == _slug %}{% assign _ci = forloop.index0 | modulo: 3 %}{% endif %}{% endfor %}
+      {% if _ci == 0 %}{% assign _badge = "bg-primary-container text-on-primary-container" %}
+      {% elsif _ci == 1 %}{% assign _badge = "bg-secondary-container text-on-secondary-container" %}
+      {% else %}{% assign _badge = "bg-tertiary-container text-on-tertiary-container" %}{% endif %}
+
+      <a href="{{ post.url | relative_url }}"
+         class="group garden-card bg-surface-container-lowest rounded-lg p-6 shadow-sm transition-all duration-300 border border-outline-variant/30 no-underline block">
+        <div class="flex flex-wrap items-center gap-2 mb-2">
+          {% if _name %}
+            <span class="px-2 py-0.5 rounded-full {{ _badge }} font-label-sm text-label-sm">{{ _name }}</span>
+          {% endif %}
+          <span class="text-on-surface-variant/60 font-label-sm text-label-sm">
+            {% if lang == 'vi' %}{{ post.date | date: "%-d tháng %-m, %Y" }}{% else %}{{ post.date | date: "%b %-d, %Y" }}{% endif %}
+          </span>
+        </div>
+        <h2 class="font-headline-md font-bold text-base md:text-headline-md text-[#2D5A27] group-hover:text-primary transition-colors mb-1">{{ post.title }}</h2>
+        {% if post.excerpt %}
+          <p class="font-body-md text-body-md text-on-surface-variant line-clamp-2 mt-1">{{ post.excerpt | strip_html | truncate: 180 }}</p>
+        {% endif %}
+      </a>
+    {% endfor %}
+  </div>
+{% endif %}
