@@ -125,25 +125,12 @@ div.max-w-3xl > nav { font-size: 26px !important; }
 
 /* ── Mobile responsive ─────────────────────────────────────────────────────── */
 @media (max-width: 768px) {
-  /* Post body font size */
-  .post-content { font-size: 1.1rem; }
-
-  /* Post heading sizes */
-  .post-content h1 { font-size: 26px; }
-  .post-content h2 { font-size: 22px; }
-  .post-content h3 { font-size: 19px; }
-  .post-content h4 { font-size: 17px; }
-
-  /* Article header h1 (post title) */
-  article header h1 { font-size: 28px; }
-
-  /* Breadcrumb / post nav */
-  div.max-w-3xl > nav { font-size: 14px !important; flex-wrap: wrap; }
-
-  /* Content container padding */
-  [data-pagefind-body] > div.max-w-3xl { padding-left: 1rem; padding-right: 1rem; }
-
-  /* Footer signature */
-  footer a.font-signature { font-size: 2rem !important; }
-  footer p.font-label-sm  { font-size: 0.875rem !important; }
+  html { font-size: 14px; }
+  body .post-content { font-size: 15px !important; }
+  body .post-content h1 { font-size: 24px !important; }
+  body .post-content h2 { font-size: 20px !important; }
+  body .post-content h3 { font-size: 18px !important; }
+  body .post-content h4 { font-size: 16px !important; }
+  body article h1 { font-size: 26px !important; }
+  div.max-w-3xl { max-width: 100% !important; padding-left: 1rem !important; padding-right: 1rem !important; }
 }
