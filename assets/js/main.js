@@ -105,4 +105,30 @@
     });
   }
 
+
+  /* ── Related posts slider ───────────────────────────────────────���──────── */
+  var relatedSlider = document.getElementById('relatedSlider');
+  var sliderPrev    = document.getElementById('sliderPrev');
+  var sliderNext    = document.getElementById('sliderNext');
+
+  if (relatedSlider && sliderPrev && sliderNext) {
+    var SCROLL_AMT = 276;
+
+    function syncSliderBtns() {
+      sliderPrev.style.opacity = relatedSlider.scrollLeft <= 2 ? '0.35' : '1';
+      sliderNext.style.opacity = relatedSlider.scrollLeft + relatedSlider.clientWidth >= relatedSlider.scrollWidth - 2 ? '0.35' : '1';
+    }
+
+    sliderPrev.addEventListener('click', function () {
+      relatedSlider.scrollBy({ left: -SCROLL_AMT, behavior: 'smooth' });
+    });
+
+    sliderNext.addEventListener('click', function () {
+      relatedSlider.scrollBy({ left: SCROLL_AMT, behavior: 'smooth' });
+    });
+
+    relatedSlider.addEventListener('scroll', syncSliderBtns);
+    syncSliderBtns();
+  }
+
 })();

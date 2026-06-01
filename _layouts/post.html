@@ -78,4 +78,47 @@ layout: default
     {% endif %}
   </footer>
 
+  <!-- Related posts slider -->
+  {% assign related_posts = site.posts | where: "lang", lang | where_exp: "p", "p.categories contains category" | where_exp: "p", "p.url != page.url" | limit: 6 %}
+  {% if related_posts.size > 0 %}
+  <section class="related-posts-section mt-16">
+    <h2 class="font-semibold text-xl mb-6" style="color:#1a3a5c;">
+      {% if lang == 'vi' %}Bài viết liên quan{% else %}Related Posts{% endif %}
+    </h2>
+    <div class="related-slider-wrapper">
+      <button class="slider-btn slider-prev" id="sliderPrev" aria-label="Previous">
+        <span class="material-symbols-outlined" style="font-size:20px;color:#2D5A27;">chevron_left</span>
+      </button>
+      <div class="related-slider" id="relatedSlider">
+        {% for p in related_posts %}
+          {% assign _pslug = p.categories | first %}
+          {% assign _ptopic = site.data.topics | where: "slug", _pslug | first %}
+          {% assign _pname = _ptopic[lang].name | default: _pslug %}
+          {% assign _pci = 0 %}
+          {% for t in site.data.topics %}{% if t.slug == _pslug %}{% assign _pci = forloop.index0 | modulo: 3 %}{% endif %}{% endfor %}
+          {% if _pci == 0 %}{% assign _pbadge = "bg-primary-container text-on-primary-container" %}
+          {% elsif _pci == 1 %}{% assign _pbadge = "bg-secondary-container text-on-secondary-container" %}
+          {% else %}{% assign _pbadge = "bg-tertiary-container text-on-tertiary-container" %}{% endif %}
+          <a href="{{ p.url | relative_url }}"
+             class="related-card garden-card bg-surface-container-lowest rounded-lg p-5 border border-outline-variant/30 no-underline flex flex-col shadow-sm transition-all duration-300 group">
+            <div class="flex flex-wrap items-center gap-2 mb-3">
+              <span class="px-2 py-0.5 rounded-full {{ _pbadge }} font-label-sm text-label-sm">{{ _pname }}</span>
+              <span class="text-on-surface-variant/60 font-label-sm text-label-sm">
+                {% if lang == 'vi' %}{{ p.date | date: "%-d tháng %-m, %Y" }}{% else %}{{ p.date | date: "%b %-d, %Y" }}{% endif %}
+              </span>
+            </div>
+            <h3 class="font-semibold text-base text-[#2E4057] group-hover:text-primary transition-colors mb-2 line-clamp-2">{{ p.title }}</h3>
+            {% if p.excerpt %}
+              <p class="text-on-surface-variant text-sm line-clamp-3 mt-auto leading-relaxed">{{ p.excerpt | strip_html | truncate: 120 }}</p>
+            {% endif %}
+          </a>
+        {% endfor %}
+      </div>
+      <button class="slider-btn slider-next" id="sliderNext" aria-label="Next">
+        <span class="material-symbols-outlined" style="font-size:20px;color:#2D5A27;">chevron_right</span>
+      </button>
+    </div>
+  </section>
+  {% endif %}
+
 </div>
