@@ -21,8 +21,8 @@ layout: default
   <img src="{{ '/assets/images/trangtri.png' | relative_url }}" alt=""
        class="pointer-events-none select-none absolute right-0 top-1/2 w-[225px] h-auto"
        style="opacity:0.40; transform: translateY(-50%);">
-  <header class="mx-auto text-left md:text-center px-[18%]">
-    <h1 class="font-headline-xl text-2xl md:text-headline-xl text-primary mb-6">
+  <header class="mx-auto text-left md:text-center px-4 md:px-[18%]">
+    <h1 class="font-headline-xl font-bold text-2xl md:text-headline-xl text-primary mb-6">
       {% if lang == 'vi' %}Gieo những hạt mầm suy nghĩ.{% else %}Cultivating thoughts at the speed of nature.{% endif %}
     </h1>
     <p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
@@ -96,7 +96,7 @@ layout: default
         <div class="mb-3">
           <span class="px-3 py-1 rounded-full {{ _badge }} font-label-sm text-label-sm">{{ _name }}</span>
         </div>
-        <h3 class="font-headline-md text-headline-md text-[#2E4057] group-hover:text-primary transition-colors mb-3">{{ p1.title }}</h3>
+        <h3 class="font-headline-md font-semibold text-headline-md text-[#2E4057] group-hover:text-primary transition-colors mb-3">{{ p1.title }}</h3>
         {% if p1.excerpt %}
           <p class="font-body-md text-body-md text-on-surface-variant line-clamp-4 mb-4">{{ p1.excerpt | strip_html | truncate: 160 }}</p>
         {% endif %}
@@ -125,7 +125,7 @@ layout: default
         <div class="mb-3">
           <span class="px-3 py-1 rounded-full {{ _badge }} font-label-sm text-label-sm">{{ _name }}</span>
         </div>
-        <h3 class="font-headline-md text-headline-md text-[#2E4057] group-hover:text-primary transition-colors mb-3">{{ post.title }}</h3>
+        <h3 class="font-headline-md font-semibold text-headline-md text-[#2E4057] group-hover:text-primary transition-colors mb-3">{{ post.title }}</h3>
         {% if post.excerpt %}
           <p class="font-body-md text-body-md text-on-surface-variant line-clamp-3 mb-4">{{ post.excerpt | strip_html | truncate: 120 }}</p>
         {% endif %}
