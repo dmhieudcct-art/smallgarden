@@ -17,9 +17,9 @@
     {% for topic in site.data.topics %}
       {% assign topic_url = '/' | append: lang | append: '/' | append: topic.slug | append: '/' | relative_url %}
       {% if page.topic_slug == topic.slug %}
-        <a class="text-[29px] [font-family:'Lora',serif] text-[#2D5A27] font-bold border-b-2 border-[#2D5A27] pb-1" href="{{ topic_url }}">{{ topic[lang].name }}</a>
+        <a class="text-[15px] [font-family:'Lora',serif] text-[#2D5A27] font-bold border-b-2 border-[#2D5A27] pb-1" href="{{ topic_url }}">{{ topic[lang].name }}</a>
       {% else %}
-        <a class="text-[29px] [font-family:'Lora',serif] text-[#2D5A27] hover:text-[#1a3a16] transition-colors" href="{{ topic_url }}">{{ topic[lang].name }}</a>
+        <a class="text-[15px] [font-family:'Lora',serif] text-[#2D5A27] hover:text-[#1a3a16] transition-colors" href="{{ topic_url }}">{{ topic[lang].name }}</a>
       {% endif %}
     {% endfor %}
   </div>
@@ -28,11 +28,11 @@
       <span class="material-symbols-outlined" style="font-size:44px;color:#2D5A27;">search</span>
     </button>
     {% if page.lang_switch %}
-      <a href="{{ page.lang_switch | relative_url }}" class="text-[29px] [font-family:'Lora',serif] font-semibold text-[#2D5A27] bg-[#E8F5E4] border border-[#2D5A27]/40 px-4 py-1 rounded-full hover:bg-[#d4edcc] transition-colors cursor-pointer">
+      <a href="{{ page.lang_switch | relative_url }}" class="text-[15px] [font-family:'Lora',serif] font-semibold text-[#2D5A27] bg-[#E8F5E4] border border-[#2D5A27]/40 px-4 py-1 rounded-full hover:bg-[#d4edcc] transition-colors cursor-pointer">
         {% if lang == 'vi' %}EN{% else %}VI{% endif %}
       </a>
     {% else %}
-      <span id="langSwitch" class="text-[29px] [font-family:'Lora',serif] font-semibold text-[#2D5A27] bg-[#E8F5E4] border border-[#2D5A27]/40 px-4 py-1 rounded-full cursor-pointer select-none">VI/EN</span>
+      <span id="langSwitch" class="text-[15px] [font-family:'Lora',serif] font-semibold text-[#2D5A27] bg-[#E8F5E4] border border-[#2D5A27]/40 px-4 py-1 rounded-full cursor-pointer select-none">VI/EN</span>
     {% endif %}
   </div>
 </div>
