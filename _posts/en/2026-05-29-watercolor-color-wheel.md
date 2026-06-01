@@ -1,7 +1,7 @@
 ---
 title: "Making Your Own Watercolor Color Wheel"
 date: 2026-05-29
-categories: automation
+categories: [art]
 lang: en
 image: /smallgarden/assets/images/Screenshot_1.png
 ---

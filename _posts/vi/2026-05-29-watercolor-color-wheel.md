@@ -1,7 +1,7 @@
 ---
 title: "Tự tạo vòng tròn màu nước"
 date: 2026-05-29
-categories: automation
+categories: [art]
 lang: vi
 image: /smallgarden/assets/images/Screenshot_1.png
 ---

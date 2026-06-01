@@ -1,7 +1,7 @@
 ---
 title: "Tự động hóa không thể chỉ dùng một công cụ duy nhất (phần 2)"
 date: 2026-05-29
-categories: automation
+categories: [automation]
 lang: vi
 image: /smallgarden/assets/images/Screenshot_1.png
 ---

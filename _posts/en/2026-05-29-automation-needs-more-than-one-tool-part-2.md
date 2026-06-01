@@ -1,7 +1,7 @@
 ---
 title: "Automation Needs More Than One Tool (Part 2)"
 date: 2026-05-29
-categories: automation
+categories: [automation]
 lang: en
 image: /smallgarden/assets/images/Screenshot_1.png
 ---
