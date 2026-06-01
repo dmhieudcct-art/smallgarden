@@ -8,6 +8,10 @@ layout: default
 {% assign p1 = all | slice: 1, 1 | first %}
 {% assign row2 = all | slice: 2, 3 %}
 {% assign p5 = all | slice: 5, 1 | first %}
+{% assign p6 = all | slice: 6, 1 | first %}
+{% assign p7 = all | slice: 7, 1 | first %}
+{% assign row2b = all | slice: 8, 3 %}
+{% assign p11 = all | slice: 11, 1 | first %}
 
 <!-- ─────────────────────────────────────────
      TAGLINE
@@ -184,4 +188,166 @@ layout: default
       </div>
     {% endif %}
   </a>
+{% endif %}
+
+<!-- ── Section divider ──────────────────────────────────────────────────── -->
+<div class="my-12 border-t-2 border-outline-variant"></div>
+
+{% if p6 %}
+
+<!-- ─────────────────────────────────────────
+     ROWS 4 & 5  (12-col grid)
+     ───────────────────────────────────────── -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter mb-gutter">
+
+  <!-- ROW 4 ── featured (8 cols) ──────────── -->
+  {% if p6 %}
+    {% assign _slug = p6.categories | first %}
+    {% assign _topic = site.data.topics | where: "slug", _slug | first %}
+    {% assign _name = _topic[lang].name | default: _slug %}
+    {% assign _ci = 0 %}
+    {% for t in site.data.topics %}{% if t.slug == _slug %}{% assign _ci = forloop.index0 | modulo: 3 %}{% endif %}{% endfor %}
+    {% if _ci == 0 %}{% assign _badge = "bg-primary-container text-on-primary-container" %}
+    {% elsif _ci == 1 %}{% assign _badge = "bg-secondary-container text-on-secondary-container" %}
+    {% else %}{% assign _badge = "bg-tertiary-container text-on-tertiary-container" %}{% endif %}
+    {% if lang == 'vi' %}{% assign _date = p6.date | date: "%-d tháng %-m, %Y" %}{% else %}{% assign _date = p6.date | date: "%B %-d, %Y" %}{% endif %}
+
+    <a href="{{ p6.url | relative_url }}"
+       class="md:col-span-8 group garden-card bg-surface-container-lowest rounded-lg overflow-hidden shadow-sm transition-all duration-300 border border-outline-variant/30 no-underline flex flex-col">
+      {% if p6.image %}
+        <div class="h-64 overflow-hidden bg-surface-container shrink-0">
+          <img src="{{ p6.image }}" alt="{{ p6.title }}"
+               class="w-full h-full object-cover grayscale-[20%] group-hover:grayscale-0 transition-all duration-700"
+               style="transform:scale(1);">
+        </div>
+      {% else %}
+        <div class="h-64 overflow-hidden bg-gradient-to-br from-primary-container via-secondary-container to-tertiary-container flex items-center justify-center shrink-0">
+          <span class="font-signature text-7xl text-primary/40 select-none -rotate-6">Small Garden</span>
+        </div>
+      {% endif %}
+      <div class="p-8 flex flex-col flex-1">
+        <div class="flex flex-wrap items-center gap-3 mb-4">
+          <span class="px-3 py-1 rounded-full {{ _badge }} font-label-sm text-label-sm">{{ _name }}</span>
+          <span class="text-on-surface-variant/60 font-label-sm text-label-sm">{{ _date }}</span>
+        </div>
+        <h2 class="font-headline-lg text-xl md:text-headline-lg font-bold text-[#2E4057] group-hover:text-primary transition-colors mb-4">{{ p6.title }}</h2>
+        {% if p6.excerpt %}
+          <p class="font-body-md text-body-md text-on-surface-variant line-clamp-3 mb-6">{{ p6.excerpt | strip_html | truncate: 200 }}</p>
+        {% endif %}
+        <span class="inline-flex items-center gap-2 text-primary font-label-md text-label-md group-hover:gap-3 transition-all mt-auto">
+          {% if lang == 'vi' %}Đọc tiếp{% else %}Read more{% endif %}
+          <span class="material-symbols-outlined" style="font-size:16px;">arrow_forward</span>
+        </span>
+      </div>
+    </a>
+  {% endif %}
+
+  <!-- ROW 4 ── small card (4 cols) ─────────── -->
+  {% if p7 %}
+    {% assign _slug = p7.categories | first %}
+    {% assign _topic = site.data.topics | where: "slug", _slug | first %}
+    {% assign _name = _topic[lang].name | default: _slug %}
+    {% assign _ci = 0 %}
+    {% for t in site.data.topics %}{% if t.slug == _slug %}{% assign _ci = forloop.index0 | modulo: 3 %}{% endif %}{% endfor %}
+    {% if _ci == 0 %}{% assign _badge = "bg-primary-container text-on-primary-container" %}
+    {% elsif _ci == 1 %}{% assign _badge = "bg-secondary-container text-on-secondary-container" %}
+    {% else %}{% assign _badge = "bg-tertiary-container text-on-tertiary-container" %}{% endif %}
+    {% if lang == 'vi' %}{% assign _date = p7.date | date: "%-d tháng %-m, %Y" %}{% else %}{% assign _date = p7.date | date: "%B %-d, %Y" %}{% endif %}
+
+    <a href="{{ p7.url | relative_url }}"
+       class="md:col-span-4 group garden-card bg-surface-container-lowest rounded-lg overflow-hidden shadow-sm transition-all duration-300 border border-outline-variant/30 no-underline flex flex-col">
+      <div class="p-6 flex flex-col flex-1">
+        <div class="mb-3">
+          <span class="px-3 py-1 rounded-full {{ _badge }} font-label-sm text-label-sm">{{ _name }}</span>
+        </div>
+        <h3 class="font-headline-md font-semibold text-base md:text-headline-md text-[#2E4057] group-hover:text-primary transition-colors mb-3">{{ p7.title }}</h3>
+        {% if p7.excerpt %}
+          <p class="font-body-md text-body-md text-on-surface-variant line-clamp-4 mb-4">{{ p7.excerpt | strip_html | truncate: 160 }}</p>
+        {% endif %}
+        <div class="pt-4 border-t border-outline-variant mt-auto">
+          <span class="text-on-surface-variant/60 font-label-sm text-label-sm">{{ _date }}</span>
+        </div>
+      </div>
+    </a>
+  {% endif %}
+
+  <!-- ROW 5 ── 3 equal cards (4 cols each) ─── -->
+  {% for post in row2b %}
+    {% assign _slug = post.categories | first %}
+    {% assign _topic = site.data.topics | where: "slug", _slug | first %}
+    {% assign _name = _topic[lang].name | default: _slug %}
+    {% assign _ci = 0 %}
+    {% for t in site.data.topics %}{% if t.slug == _slug %}{% assign _ci = forloop.index0 | modulo: 3 %}{% endif %}{% endfor %}
+    {% if _ci == 0 %}{% assign _badge = "bg-primary-container text-on-primary-container" %}
+    {% elsif _ci == 1 %}{% assign _badge = "bg-secondary-container text-on-secondary-container" %}
+    {% else %}{% assign _badge = "bg-tertiary-container text-on-tertiary-container" %}{% endif %}
+    {% if lang == 'vi' %}{% assign _date = post.date | date: "%-d tháng %-m, %Y" %}{% else %}{% assign _date = post.date | date: "%B %-d, %Y" %}{% endif %}
+
+    <a href="{{ post.url | relative_url }}"
+       class="md:col-span-4 group garden-card bg-surface-container-lowest rounded-lg overflow-hidden shadow-sm transition-all duration-300 border border-outline-variant/30 no-underline flex flex-col">
+      <div class="p-6 flex flex-col flex-1">
+        <div class="mb-3">
+          <span class="px-3 py-1 rounded-full {{ _badge }} font-label-sm text-label-sm">{{ _name }}</span>
+        </div>
+        <h3 class="font-headline-md font-semibold text-base md:text-headline-md text-[#2E4057] group-hover:text-primary transition-colors mb-3">{{ post.title }}</h3>
+        {% if post.excerpt %}
+          <p class="font-body-md text-body-md text-on-surface-variant line-clamp-3 mb-4">{{ post.excerpt | strip_html | truncate: 120 }}</p>
+        {% endif %}
+        <div class="pt-4 border-t border-outline-variant mt-auto">
+          <span class="text-on-surface-variant/60 font-label-sm text-label-sm">{{ _date }}</span>
+        </div>
+      </div>
+    </a>
+  {% endfor %}
+
+</div>
+
+<!-- ─────────────────────────────────────────
+     ROW 6 ── horizontal full-width card
+     ───────────────────────────────────────── -->
+{% if p11 %}
+  {% assign _slug = p11.categories | first %}
+  {% assign _topic = site.data.topics | where: "slug", _slug | first %}
+  {% assign _name = _topic[lang].name | default: _slug %}
+  {% assign _ci = 0 %}
+  {% for t in site.data.topics %}{% if t.slug == _slug %}{% assign _ci = forloop.index0 | modulo: 3 %}{% endif %}{% endfor %}
+  {% if _ci == 0 %}{% assign _badge = "bg-primary-container text-on-primary-container" %}
+  {% elsif _ci == 1 %}{% assign _badge = "bg-secondary-container text-on-secondary-container" %}
+  {% else %}{% assign _badge = "bg-tertiary-container text-on-tertiary-container" %}{% endif %}
+  {% if lang == 'vi' %}{% assign _date = p11.date | date: "%-d tháng %-m, %Y" %}{% else %}{% assign _date = p11.date | date: "%B %-d, %Y" %}{% endif %}
+
+  <a href="{{ p11.url | relative_url }}"
+     class="group garden-card bg-surface-container-lowest rounded-lg overflow-hidden shadow-sm transition-all duration-300 border border-outline-variant/30 no-underline flex flex-col md:grid md:grid-cols-2">
+    <!-- Left: text -->
+    <div class="p-10 md:p-12 flex flex-col justify-between">
+      <div>
+        <div class="flex flex-wrap items-center gap-3 mb-6">
+          <span class="px-3 py-1 rounded-full {{ _badge }} font-label-sm text-label-sm">{{ _name }}</span>
+          <span class="text-on-surface-variant/60 font-label-sm text-label-sm">{{ _date }}</span>
+        </div>
+        <h2 class="font-headline-lg text-xl md:text-headline-lg font-bold text-[#2E4057] group-hover:text-primary transition-colors mb-4">{{ p11.title }}</h2>
+        {% if p11.excerpt %}
+          <p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed mb-8">{{ p11.excerpt | strip_html | truncate: 240 }}</p>
+        {% endif %}
+      </div>
+      <span class="inline-flex items-center gap-2 px-6 py-3 bg-primary text-on-primary rounded-lg font-label-md text-label-md w-fit hover:shadow-lg transition-all active:scale-95">
+        {% if lang == 'vi' %}Đọc tiếp{% else %}Read more{% endif %}
+        <span class="material-symbols-outlined" style="font-size:16px;">arrow_forward</span>
+      </span>
+    </div>
+    <!-- Right: image or pastel fill -->
+    {% if p11.image %}
+      <div class="hidden md:block overflow-hidden bg-surface-container min-h-80">
+        <img src="{{ p11.image }}" alt="{{ p11.title }}"
+             class="w-full h-full object-cover grayscale-[20%] group-hover:grayscale-0 transition-all duration-700"
+             style="transform:scale(1);">
+      </div>
+    {% else %}
+      <div class="hidden md:flex overflow-hidden bg-gradient-to-br from-primary-container via-secondary-container to-tertiary-container items-center justify-center min-h-80">
+        <span class="font-signature text-7xl text-primary/40 select-none -rotate-6">Small Garden</span>
+      </div>
+    {% endif %}
+  </a>
+{% endif %}
+
 {% endif %}
