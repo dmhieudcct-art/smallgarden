@@ -13,6 +13,7 @@
   <div class="font-signature text-4xl text-primary transform -rotate-2">
     <a href="{{ home_url }}">{{ site.title }}</a>
   </div>
+  <div class="flex items-center gap-8">
   <div class="hidden lg:flex gap-14 items-center">
     {% for topic in site.data.topics %}
       {% assign topic_url = '/' | append: lang | append: '/' | append: topic.slug | append: '/' | relative_url %}
@@ -34,6 +35,7 @@
     {% else %}
       <span id="langSwitch" class="text-[18px] [font-family:'Lora',serif] font-semibold text-[#2D5A27] bg-[#E8F5E4] border border-[#2D5A27]/40 px-4 py-1 rounded-full cursor-pointer select-none">VI/EN</span>
     {% endif %}
+  </div>
   </div>
 </div>
 </nav>
