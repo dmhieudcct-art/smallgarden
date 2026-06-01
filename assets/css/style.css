@@ -122,3 +122,28 @@ div.max-w-3xl > nav { font-size: 26px !important; }
 .post-content table { width: 100%; border-collapse: collapse; margin-bottom: 1.6em; font-size: 0.95em; }
 .post-content th { background: #edeeef; font-weight: 600; text-align: left; padding: 0.6em 0.9em; border: 1px solid #c2c7ce; }
 .post-content td { padding: 0.6em 0.9em; border: 1px solid #c2c7ce; vertical-align: top; }
+
+/* ── Mobile responsive ─────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  /* Post body font size */
+  .post-content { font-size: 1.1rem; }
+
+  /* Post heading sizes */
+  .post-content h1 { font-size: 26px; }
+  .post-content h2 { font-size: 22px; }
+  .post-content h3 { font-size: 19px; }
+  .post-content h4 { font-size: 17px; }
+
+  /* Article header h1 (post title) */
+  article header h1 { font-size: 28px; }
+
+  /* Breadcrumb / post nav */
+  div.max-w-3xl > nav { font-size: 14px !important; flex-wrap: wrap; }
+
+  /* Content container padding */
+  [data-pagefind-body] > div.max-w-3xl { padding-left: 1rem; padding-right: 1rem; }
+
+  /* Footer signature */
+  footer a.font-signature { font-size: 2rem !important; }
+  footer p.font-label-sm  { font-size: 0.875rem !important; }
+}
