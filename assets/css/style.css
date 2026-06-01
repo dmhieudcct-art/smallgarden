@@ -139,6 +139,11 @@ div.max-w-3xl > nav { font-size: 26px !important; }
 #scrollTopBtn.visible { display:flex; }
 #scrollTopBtn:hover { background:#1f3f1b; transform:translateY(-3px); }
 
+/* ── Desktop logo size ─────────────────────────────────────────────────────── */
+@media (min-width: 769px) {
+  nav .font-signature { font-size: 4.5rem; }
+}
+
 /* ── Mobile responsive ─────────────────────────────────────────────────────── */
 @media (max-width: 768px) {
   html { font-size: 14px !important; }
