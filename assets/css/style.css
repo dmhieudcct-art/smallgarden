@@ -134,6 +134,11 @@ div.max-w-3xl > nav { font-size: 26px !important; }
 .slider-prev { left: 0; }
 .slider-next { right: 0; }
 
+/* ── Scroll to top button ───────────────────────────────────────────────────── */
+#scrollTopBtn { display:none; position:fixed; bottom:2rem; right:2rem; z-index:999; width:48px; height:48px; border-radius:50%; background:#2D5A27; color:#ffffff; border:none; cursor:pointer; align-items:center; justify-content:center; box-shadow:0 4px 16px rgba(0,0,0,0.2); transition:opacity 0.25s, transform 0.25s; }
+#scrollTopBtn.visible { display:flex; }
+#scrollTopBtn:hover { background:#1f3f1b; transform:translateY(-3px); }
+
 /* ── Mobile responsive ─────────────────────────────────────────────────────── */
 @media (max-width: 768px) {
   html { font-size: 14px !important; }

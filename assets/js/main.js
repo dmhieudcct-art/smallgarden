@@ -106,6 +106,17 @@
   }
 
 
+  /* ── Scroll to top ─────────────────────────────────────────────────────── */
+  var scrollTopBtn = document.getElementById('scrollTopBtn');
+  if (scrollTopBtn) {
+    window.addEventListener('scroll', function () {
+      scrollTopBtn.classList.toggle('visible', window.scrollY > 300);
+    }, { passive: true });
+    scrollTopBtn.addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
   /* ── Related posts slider ───────────────────────────────────────���──────── */
   var relatedSlider = document.getElementById('relatedSlider');
   var sliderPrev    = document.getElementById('sliderPrev');
