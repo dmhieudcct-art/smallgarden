@@ -1,9 +1,9 @@
 {% assign lang = page.lang | default: 'en' %}
 {% assign home_url = '/' | append: lang | append: '/' | relative_url %}
 
-<nav class="backdrop-blur-md fixed top-0 w-full z-50 shadow-sm flex items-center py-8 md:py-10" style="background-color: #FFFFFF;">
+<nav class="backdrop-blur-md fixed top-0 w-full z-50 shadow-sm" style="background-color: #FFFFFF;">
 <div class="absolute inset-0 -z-10"></div>
-<div class="w-full px-margin-mobile md:px-margin-desktop flex justify-between items-center relative z-10">
+<div class="w-full px-margin-mobile md:px-margin-desktop flex justify-between items-center py-8 md:py-10 relative z-10">
   <div class="absolute inset-0 pointer-events-none -z-10 overflow-hidden">
     <img class="absolute top-[-30px] left-[-30px] w-44 h-auto opacity-40 rotate-[-15deg] object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBLrOdqXqEJucWs5kP2S-H_aAQzDm1YoOf1lF0IFghb7bERmH7NgnewH38nC-3Pwt5N9tq1abr6aPFQx6qKaNQxIRsOCGKCl973_0fbiUza5LkmOPFDDOSK2j1vLoqhqXj0R322_IT-3n6BHzlY6gf3dcSD-9wRGlDZR7_S2dK8nh2C13Eguq4Ot5fUhuAAgCZb5D52rtPvKTC5ahmYws3mIqSlLm995hMRIXSsjDRBQ6W7OINb3-CBFBp6vfwsbYoK2GmNRppCbK-C" alt=""/>
     <img class="absolute bottom-[-15px] left-[220px] w-32 h-auto opacity-50 rotate-[160deg] object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBLrOdqXqEJucWs5kP2S-H_aAQzDm1YoOf1lF0IFghb7bERmH7NgnewH38nC-3Pwt5N9tq1abr6aPFQx6qKaNQxIRsOCGKCl973_0fbiUza5LkmOPFDDOSK2j1vLoqhqXj0R322_IT-3n6BHzlY6gf3dcSD-9wRGlDZR7_S2dK8nh2C13Eguq4Ot5fUhuAAgCZb5D52rtPvKTC5ahmYws3mIqSlLm995hMRIXSsjDRBQ6W7OINb3-CBFBp6vfwsbYoK2GmNRppCbK-C" alt=""/>
@@ -34,8 +34,45 @@
     {% else %}
       <span id="langSwitch" class="text-[18px] [font-family:'Lora',serif] font-semibold text-[#2D5A27] bg-[#E8F5E4] border border-[#2D5A27]/40 px-4 py-1 rounded-full cursor-pointer select-none">VI/EN</span>
     {% endif %}
+    <button id="hamburgerBtn" class="lg:hidden p-2 rounded-full hover:bg-[#E8F5E4] transition-all duration-200 active:scale-95" aria-label="Menu" aria-expanded="false" aria-controls="mobileMenu">
+      <span class="material-symbols-outlined" style="font-size:32px;color:#2D5A27;">menu</span>
+    </button>
   </div>
 </div>
+
+<!-- Mobile dropdown menu -->
+<div id="mobileMenu" class="hidden lg:hidden relative z-10 border-t border-[#2D5A27]/20" style="background-color: #FFFFFF;" data-pagefind-ignore>
+  <div class="px-margin-mobile py-3 flex flex-col gap-1">
+    {% for topic in site.data.topics %}
+      {% assign topic_url = '/' | append: lang | append: '/' | append: topic.slug | append: '/' | relative_url %}
+      {% if page.topic_slug == topic.slug %}
+        <a class="text-[18px] [font-family:'Lora',serif] text-[#2D5A27] font-bold py-3 px-4 rounded-lg bg-[#E8F5E4] border-l-4 border-[#2D5A27]" href="{{ topic_url }}">{{ topic.icon }} {{ topic[lang].name }}</a>
+      {% else %}
+        <a class="text-[18px] [font-family:'Lora',serif] text-[#2D5A27] py-3 px-4 rounded-lg hover:bg-[#E8F5E4] transition-colors" href="{{ topic_url }}">{{ topic.icon }} {{ topic[lang].name }}</a>
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>
+
+<script>
+  (function () {
+    var btn = document.getElementById('hamburgerBtn');
+    var menu = document.getElementById('mobileMenu');
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var isOpen = !menu.classList.contains('hidden');
+      menu.classList.toggle('hidden', isOpen);
+      btn.setAttribute('aria-expanded', String(!isOpen));
+    });
+    document.addEventListener('click', function (e) {
+      if (!menu.classList.contains('hidden') && !menu.contains(e.target) && !btn.contains(e.target)) {
+        menu.classList.add('hidden');
+        btn.setAttribute('aria-expanded', 'false');
+      }
+    });
+  })();
+</script>
+
 </nav>
 
 <!-- Lang-unavailable modal -->
