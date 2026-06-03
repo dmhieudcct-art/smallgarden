@@ -51,3 +51,12 @@
   en:
     name: Travel
     description: Places visited and places to discover
+
+- slug: life-systems
+  icon: "🔄"
+  vi:
+    name: Hệ Thống Sống
+    description: Nghiên cứu và cải thiện các yếu tố vận hành cuộc sống
+  en:
+    name: Life Systems
+    description: Studying and improving the systems that shape a life
