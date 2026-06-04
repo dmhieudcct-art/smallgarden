@@ -1,5 +1,5 @@
 ---
-title: "Giới thiệu dự án: HIểu cuộc đời để sống tốt hơn"
+title: "Giới thiệu dự án: Hiểu cuộc đời để sống tốt hơn"
 date: 2026-06-04
 categories: life-systems
 lang: vi
