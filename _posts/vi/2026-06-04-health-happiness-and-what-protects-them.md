@@ -1,7 +1,7 @@
 ---
 title: "Sức khỏe, hạnh phúc và những điều kiện bảo vệ chúng"
 date: 2026-06-04
-categories: reflections
+categories: life-systems
 lang: vi
 excerpt: "Người trưởng thành không chỉ cần sức khỏe và hạnh phúc — họ còn cần những điều kiện giúp bảo vệ hai thứ đó trước biến động của cuộc sống."
 ---

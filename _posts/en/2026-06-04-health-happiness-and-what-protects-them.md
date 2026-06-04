@@ -1,7 +1,7 @@
 ---
 title: "Health, Happiness, and What Actually Protects Them"
 date: 2026-06-04
-categories: reflections
+categories: life-systems
 lang: en
 excerpt: "Adults don't just need health and happiness — they need the conditions that keep those things intact when life pushes back."
 ---
